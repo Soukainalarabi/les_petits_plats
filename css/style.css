@@ -1,6 +1,4 @@
-body{
-    font-family: Lato;
-}
+
 .container{
     margin: auto;
     max-width: 1240px;
@@ -53,8 +51,11 @@ input[type="search"] {
     padding-left: 3%;
    }
 h1{
-    font-size: 20px;
-    font-weight: normal;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
+        height: 22px;
+line-height:21.6px
 }
 .details-recipes{
     display: flex;
@@ -70,6 +71,11 @@ Line-height:14.4px;
 .description{
     width: 171px;
     font-size:12px;
+    font-family: Roboto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 109px;
+
 
 }
 
@@ -88,15 +94,21 @@ Line-height:14.4px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-right: 4%;
+    padding-right: 6%;}
+.time-number{
+    font-weight: 700;
+}
+.time img{
+    width: 20px;
+    height: 20px;
+    margin-right: 15%;
 }
 .ingredients{
     height: 105px;
     width: 171px;
+    font-family: 'Lato', sans-serif;
 }
-.description{
-    height: 109px;
-}
+
 @media(max-width:1258px){
     .cards{
         gap: 6% 0%;
@@ -129,7 +141,7 @@ Line-height:14.4px;
        
         grid-template-columns: repeat(1, 1fr);
         justify-items: center!important;
-        gap: 2% 4%;
+    gap: 0.5%;;
       
     }  
     .card,.card-img {
