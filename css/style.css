@@ -3,6 +3,8 @@
 }
 .dropdowns{
     margin-top: 2%;
+    display: flex;
+    justify-content: flex-start;
 }
 
 /* Style The Dropdown Button */
@@ -10,7 +12,7 @@
 .dropbtn-ustensiles{
     background-color:#ED6454 ;
     margin-left: 2%;
-    width: 170px;
+    width: 667px; 
 
 }
 .dropbtn-ingredients{
@@ -21,7 +23,8 @@
 .dropbtn-appareils{
     background-color:#68D9A4 ;
     margin-left: 2%;
-    width: 170px;
+     width: 667px; 
+    /* width: 170px;  */
 
 }
 .dropbtn-ustensiles,.dropbtn-ingredients,.dropbtn-appareils {
@@ -42,7 +45,7 @@
   }
   
   /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
+  .dropdown-contentA , .dropdown-contentB, .dropdown-contentC{
     display: none;
     position: absolute;
     min-width: 160px;
@@ -51,23 +54,30 @@
     width: 667px;
     height: 397px;
     
+    
   }
-  .dropbtn-appareils .dropdown-content{
+  .dropbtn-appareils .dropdown-contentB{
     background-color:#68D9A4 ;
+    /* display: grid;
+    grid-template-columns: repeat(3, 1fr); */
 
   }
-  .dropbtn-ingredients .dropdown-content{
+  .dropbtn-ingredients .dropdown-contentA{
     background-color:#3282F7 ;
+    /* display: grid;
+    grid-template-columns: repeat(3, 1fr); */
    
     
 
   }
-  .dropbtn-ustensiles .dropdown-content{
+  .dropbtn-ustensiles .dropdown-contentC{
     background-color:#ED6454 ;
+    /* display: grid;
+    grid-template-columns: repeat(3, 1fr); */
 
   }
   /* Links inside the dropdown */
-  .dropdown-content a {
+  .dropdown-contentA a, .dropdown-contentB a, .dropdown-contentC a{
     color: white;
     padding: 12px 0px;
     text-decoration: none;
@@ -76,10 +86,11 @@
   }
   
   /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: hsl(0, 13%, 65%)}
+  .dropdown-contentA a:hover , .dropdown-contentB a:hover , .dropdown-contentC a:hover 
+  {background-color: hsl(0, 13%, 65%)}
   
   /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {
+  .dropdown:hover  .dropdown-contentA , .dropdown:hover .dropdown-contentB,  .dropdown:hover .dropdown-contentC{
     display: block;
   }
   
@@ -89,7 +100,7 @@
   }
 .container{
     margin: auto;
-    max-width: 1240px;
+    max-width: 1440px;
 }
 .logo{
     margin-top: 2%;

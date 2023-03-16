@@ -13,13 +13,11 @@ inputSearch.addEventListener("search", () => {
     cardElms.forEach(card => {
         card.style.display = "none"
     })
-    const result = recipes.filter(recipe => recipe.name.toUpperCase().includes(inputSearch.value.toUpperCase().trim()) ||
-        recipe.description.toUpperCase().includes(inputSearch.value.toUpperCase().trim())
-       
-    );
+    const result = recipes.filter(recipe =>
+        recipe.name.toUpperCase().includes(inputSearch.value.toUpperCase().trim()) ||
+        recipe.description.toUpperCase().includes(inputSearch.value.toUpperCase().trim()));
     result.forEach(res => {
         document.getElementById(`recipe-${res.id}`).style.display = "block"
-
     })
 });
 let showRecipes = () => {
