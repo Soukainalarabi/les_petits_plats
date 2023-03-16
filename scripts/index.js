@@ -15,12 +15,10 @@ inputSearch.addEventListener("search", () => {
     })
     const result = recipes.filter(recipe => recipe.name.toUpperCase().includes(inputSearch.value.toUpperCase().trim()) ||
         recipe.description.toUpperCase().includes(inputSearch.value.toUpperCase().trim())
+       
     );
-    console.log(result)
-
     result.forEach(res => {
         document.getElementById(`recipe-${res.id}`).style.display = "block"
-
 
     })
 });

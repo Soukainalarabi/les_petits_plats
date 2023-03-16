@@ -1,4 +1,92 @@
+.icon-bas{
+    width: 16px;
+}
+.dropdowns{
+    margin-top: 2%;
+}
 
+/* Style The Dropdown Button */
+
+.dropbtn-ustensiles{
+    background-color:#ED6454 ;
+    margin-left: 2%;
+    width: 170px;
+
+}
+.dropbtn-ingredients{
+    background-color:#3282F7 ;
+    width: 667px;
+    height: 397px;
+}
+.dropbtn-appareils{
+    background-color:#68D9A4 ;
+    margin-left: 2%;
+    width: 170px;
+
+}
+.dropbtn-ustensiles,.dropbtn-ingredients,.dropbtn-appareils {
+    color: white;
+    padding: 0px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    /* width: 170px; */
+    height: 69px;
+    border-radius: 5px;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 667px;
+    height: 397px;
+    
+  }
+  .dropbtn-appareils .dropdown-content{
+    background-color:#68D9A4 ;
+
+  }
+  .dropbtn-ingredients .dropdown-content{
+    background-color:#3282F7 ;
+   
+    
+
+  }
+  .dropbtn-ustensiles .dropdown-content{
+    background-color:#ED6454 ;
+
+  }
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: white;
+    padding: 12px 0px;
+    text-decoration: none;
+    display: block;
+    
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: hsl(0, 13%, 65%)}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {
+    background-color: #3282F7;
+  }
 .container{
     margin: auto;
     max-width: 1240px;
@@ -162,5 +250,9 @@ width: 100%;
     }
     .rectangle-search {
         width: 98%;
+    }
+    .dropbtn-ustensiles {
+        margin-top: 2%;
+         margin-left: 0; 
     }
 }

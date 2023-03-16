@@ -1,4 +1,5 @@
-export default function cardFactory(recipe) {
+export default function cardFactory(recipe, ingredients) {
+    let dropDownbuttonIngredients = document.querySelector(".dropdown-content")
     let cardRecipes = document.createElement("div")
     let imgCard = document.createElement("div")
     let bodyCard = document.createElement("div")
@@ -39,10 +40,24 @@ export default function cardFactory(recipe) {
         pDescription.textContent = recipe.description
         recipe.ingredients.forEach(ingredient => {
             let ingredientsDetails = document.createElement("li")
+            let dropDownIngredients = document.createElement("a")
+            dropDownIngredients.setAttribute("class", `ingredients-recipe ${recipe.id}`)
+            dropDownIngredients.setAttribute("value", ingredient.ingredient)
+
             ingredientsUl.appendChild(ingredientsDetails)
+            dropDownbuttonIngredients.appendChild(dropDownIngredients)
             let quantityInit = ingredient.quantity ? ":" + ingredient.quantity : ""
             let unitInit = ingredient.unit ? ingredient.unit : ""
             ingredientsDetails.textContent = ingredient.ingredient + quantityInit + unitInit
+            dropDownIngredients.textContent = ingredient.ingredient
+            //les ingredients ne doivent pas se répéter
+            console.log(dropDownIngredients.value)
+            let a = dropDownIngredients.textContent
+            let b = dropDownIngredients
+
+
+
+
         });
         return (cardRecipes)
 
