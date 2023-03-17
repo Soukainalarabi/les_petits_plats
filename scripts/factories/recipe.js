@@ -1,7 +1,12 @@
 export default function cardFactory(recipe, ingredients) {
+    let h1 = document.querySelector("h1")
+    let inputIngredient = document.querySelector(".ingredients-input")
     let dropDownButtonA = document.querySelector(".dropdown-contentA ")
+    let dropBtnIng = document.querySelector(".dropbtn-ingredients")
     let dropDownButtonB = document.querySelector(".dropdown-contentB ")
+    let dropBtnApp = document.querySelector(".dropbtn-appareils")
     let dropDownButtonC = document.querySelector(".dropdown-contentC ")
+    let dropBtnUst = document.querySelector(".dropbtn-ustensiles")
     let cardRecipes = document.createElement("div")
     let imgCard = document.createElement("div")
     let bodyCard = document.createElement("div")
@@ -50,8 +55,6 @@ export default function cardFactory(recipe, ingredients) {
         dropDownAppareils.textContent = recipe.appliance
         recipe.ustensils.forEach(ustensil => {
             dropDownUstensiles.textContent = ustensil //il y a une erreur au niveau du textContent des ustensile (voir data pour se rassurer)
-            dropDownButtonC.style.display = "grid"
-            dropDownButtonC.style.gridTemplateColumns = "repeat(3, 1fr)"
         })
         recipe.ingredients.forEach(ingredient => {
             let ingredientsDetails = document.createElement("li")
@@ -63,7 +66,40 @@ export default function cardFactory(recipe, ingredients) {
             let quantityInit = ingredient.quantity ? ":" + ingredient.quantity : ""
             let unitInit = ingredient.unit ? ingredient.unit : ""
             ingredientsDetails.textContent = ingredient.ingredient + quantityInit + unitInit
-            dropDownIngredients.textContent = ingredient.ingredient
+            dropBtnIng.addEventListener("click", () => {
+                h1.style.display = "none"
+                // inputIngredient.style.display = 'block'
+                dropDownIngredients.textContent = ingredient.ingredient
+                dropBtnIng.style.width = "667px"
+                dropDownButtonA.style.display = "grid"
+                dropDownButtonA.style.gridTemplateColumns = "repeat(3, 1fr)";
+                dropDownButtonA.style.width = "667px"
+                dropDownButtonA.style.height = "397px"
+            })
+            dropBtnApp.addEventListener("click", () => {
+                dropBtnApp.style.width = "667px"
+                dropDownButtonB.style.display = "grid"
+                dropDownButtonB.style.gridTemplateColumns = "repeat(3, 1fr)";
+                dropDownButtonB.style.width = "667px"
+                dropDownButtonB.style.height = "397px"
+            })
+            dropBtnUst.addEventListener("click", () => {
+                dropBtnUst.style.width = "667px"
+                dropDownButtonC.style.display = "grid"
+                dropDownButtonC.style.gridTemplateColumns = "repeat(3, 1fr)";
+                dropDownButtonC.style.width = "667px"
+                dropDownButtonC.style.height = "397px"
+            })
+
+
+
+
+            //   (dropDownButtonB) {
+            //     dropBtnIng.style.width = "170px"
+            //     dropBtnApp.style.width = "667px"
+            //     dropBtnApp.style.height = "397px"
+
+            // }
 
 
 

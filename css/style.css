@@ -11,19 +11,19 @@
 
 .dropbtn-ustensiles{
     background-color:#ED6454 ;
-    margin-left: 2%;
-    width: 667px; 
+    margin-left: 14%;
+    /* width: 667px;  */
 
 }
 .dropbtn-ingredients{
     background-color:#3282F7 ;
-    width: 667px;
-    height: 397px;
+    /* width: 667px;
+    height: 397px; */
 }
 .dropbtn-appareils{
     background-color:#68D9A4 ;
-    margin-left: 2%;
-     width: 667px; 
+    margin-left: 7%;
+     /* width: 667px;  */
     /* width: 170px;  */
 
 }
@@ -33,7 +33,7 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
-    /* width: 170px; */
+     width: 170px; 
     height: 69px;
     border-radius: 5px;
   }
@@ -51,8 +51,8 @@
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    width: 667px;
-    height: 397px;
+    /* width: 667px;
+    height: 397px; */
     
     
   }
@@ -76,10 +76,22 @@
     grid-template-columns: repeat(3, 1fr); */
 
   }
+  #search-ingredient{
+    color: #FFFFFF;
+    font-size :18px;
+
+  }
+  .ingredients-input{
+    /* display: none; */
+    border: none;
+    color: #FFFFFF;
+    font-size :18px;
+    background-color:#3282F7 !important  }
   /* Links inside the dropdown */
   .dropdown-contentA a, .dropdown-contentB a, .dropdown-contentC a{
     color: white;
-    padding: 12px 0px;
+    text-align: start;
+    padding: 12px 19px;
     text-decoration: none;
     display: block;
     
@@ -100,7 +112,9 @@
   }
 .container{
     margin: auto;
-    max-width: 1440px;
+    max-width: 1200px;
+
+    /* max-width: 1440px; */
 }
 .logo{
     margin-top: 2%;
