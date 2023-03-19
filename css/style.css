@@ -224,7 +224,7 @@ Line-height:14.4px;
 
 @media(max-width:1258px){
     .cards{
-        gap: 6% 0%;
+        gap: 2% 0%;
 
     }
     .card, .card-img{
@@ -236,7 +236,7 @@ Line-height:14.4px;
       
         grid-template-columns: repeat(2, 1fr);
         justify-items: center!important;   
-            gap: 6% 0%;
+            gap: 1% 0%;
          
     }  
     .card ,.card-img{

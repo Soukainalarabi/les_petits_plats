@@ -1,5 +1,6 @@
-export default function cardFactory(recipe, ingredients) {
+export default function cardFactory(recipe, uniqueIngredients) {
     let h1 = document.querySelector("h1")
+    let closedropDown = document.querySelector(".icon-bas")
     let inputIngredient = document.querySelector(".ingredients-input")
     let dropDownButtonA = document.querySelector(".dropdown-contentA ")
     let dropBtnIng = document.querySelector(".dropbtn-ingredients")
@@ -69,7 +70,10 @@ export default function cardFactory(recipe, ingredients) {
             dropBtnIng.addEventListener("click", () => {
                 h1.style.display = "none"
                 // inputIngredient.style.display = 'block'
-                dropDownIngredients.textContent = ingredient.ingredient
+                uniqueIngredients.forEach(el=>{
+                    dropDownIngredients.textContent = el
+
+                })
                 dropBtnIng.style.width = "667px"
                 dropDownButtonA.style.display = "grid"
                 dropDownButtonA.style.gridTemplateColumns = "repeat(3, 1fr)";
@@ -80,6 +84,7 @@ export default function cardFactory(recipe, ingredients) {
                 dropBtnApp.style.width = "667px"
                 dropDownButtonB.style.display = "grid"
                 dropDownButtonB.style.gridTemplateColumns = "repeat(3, 1fr)";
+                dropDownButtonB.style.marginRight = "2%"
                 dropDownButtonB.style.width = "667px"
                 dropDownButtonB.style.height = "397px"
             })
