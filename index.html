@@ -31,11 +31,20 @@
                     d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
             </svg>
         </div>
+        <div class="button-recherche">
+            <button class="recherche-ingredients">
+                <h1></h1>
+                
+                <img class="icon-close" src="assets/close.png" aria-label="icon pour fermer le menu"
+                    alt="icon pour fermer">
+            </button>
+        </div>
         <div class="dropdowns">
             <div class="dropdown ingredient">
                 <button class="dropbtn-ingredients">
-                    <h1>Ingredients</h1>
-                    <input class="ingredients-input" type="search" name="" id="search-ingredient" placeholder="Rechercher un ingredient">
+                    <h2>Ingredients</h2>
+                    <input class="ingredients-input" type="search" name="" id="search-ingredient"
+                        placeholder="Rechercher un ingredient">
                     <div class="dropdown-contentA">
                     </div>
                     <img class="icon-bas" src="assets/dropdown.png" aria-label="icon pour ouvrir le menu déroulant"
@@ -69,7 +78,8 @@
 
 
     <script type="module" src="scripts/index.js"></script>
-    <script type="module" src="scripts/factories/recipe.js"></script>
+    <script type="module" src="scripts/factories/dropDown.js"></script>
+    <script type="module" src="scripts/factories/recipeCard.js"></script>
     <script type="module" src="scripts/data/recipes.js"></script>
 
 
