@@ -4,10 +4,12 @@ import buttonFactory from "./factories/dropDown.js"
 let cards = document.querySelector(".cards")
 let dropDowns = document.querySelector(".dropdowns")
 let inputSearch = document.getElementById("contenu-search")
-let testArray = recipes.flatMap(r => r.ingredients)
-let uniqueIngredients = [...new Set(testArray.map(i => i.ingredient))]; //il est sensible a la casse
+let uniqueIngredients = [...new Set(recipes.flatMap(r => r.ingredients))]; //il est sensible a la casse
+let ustensils = [...new Set(recipes.flatMap(r => r.ustensils))]; //il est sensible a la casse
+let appareils = [...new Set(recipes.map(res => res.appliance))];
+console.log(ustensils)
 //effectuer une recherche globale(name,ingredient,description)
-inputSearch.addEventListener("search", () => {
+inputSearch.addEventListener("keyup", () => {
     let cardElms = document.querySelectorAll(".card")
     //pour ne pas effectuer une recherche si la valeur de input est vide ,contient des espace et superieur a trois caracteres 
     if (!inputSearch.value.trim() || inputSearch.value.length < 3) {
@@ -16,6 +18,7 @@ inputSearch.addEventListener("search", () => {
         })
         return
     }
+
     cardElms.forEach(card => {
         card.style.display = "none"
     })
@@ -39,7 +42,7 @@ let showRecipes = () => {
 }
 let showDropDown = () => {
 
-    let buttonFactoryModel = buttonFactory(uniqueIngredients, [], [])
+    let buttonFactoryModel = buttonFactory(uniqueIngredients, appareils, ustensils)
     let ButtonDom = buttonFactoryModel.getButtonDom()
     // dropDowns.appendChild(ButtonDom)
 

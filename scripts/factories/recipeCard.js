@@ -37,14 +37,12 @@ export default function cardFactory(recipe, uniqueIngredients) {
         name.textContent = recipe.name
         timeNumber.textContent = recipe.time + "min"
         pDescription.textContent = recipe.description
-
         recipe.ingredients.forEach(ingredient => {
             let ingredientsDetails = document.createElement("li")
             ingredientsUl.appendChild(ingredientsDetails)
             let quantityInit = ingredient.quantity ? ":" + ingredient.quantity : ""
             let unitInit = ingredient.unit ? ingredient.unit : ""
             ingredientsDetails.textContent = ingredient.ingredient + quantityInit + unitInit
-
         });
         return (cardRecipes)
 

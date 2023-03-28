@@ -3,6 +3,7 @@
 }
 .button-recherche{
     display: none;
+    width: auto;
 }
 .dropdowns{
     margin-top: 2%;
@@ -14,6 +15,14 @@ display: flex;
 justify-content: space-around;
  align-items: center;
  margin-top: 2%;
+ color: white;
+ padding: 8px;
+ font-size: 16px;
+ border: none;
+ cursor: pointer;
+  /* width: auto;  */
+ height: 37px;
+ border-radius: 5px;
 }
 /* Style The Dropdown Button */
 
@@ -35,7 +44,7 @@ justify-content: space-around;
     /* width: 170px;  */
 
 }
-.dropbtn-ustensiles,.dropbtn-ingredients,.dropbtn-appareils,.recherche-ingredients {
+.dropbtn-ustensiles,.dropbtn-ingredients,.dropbtn-appareils {
     color: white;
     padding: 0px;
     font-size: 16px;
@@ -106,6 +115,7 @@ justify-content: space-around;
   /* Links inside the dropdown */
   .dropdown-contentA a, .dropdown-contentB a, .dropdown-contentC a{
     color: white;
+    pointer:cursor;
     text-align: start;
     padding: 12px 19px;
     text-decoration: none;
