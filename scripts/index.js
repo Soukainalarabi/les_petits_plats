@@ -4,10 +4,10 @@ import buttonFactory from "./factories/dropDown.js"
 let cards = document.querySelector(".cards")
 let dropDowns = document.querySelector(".dropdowns")
 let inputSearch = document.getElementById("contenu-search")
-let uniqueIngredients = [...new Set(recipes.flatMap(r => r.ingredients))]; //il est sensible a la casse
+let uniqueIngredients = [...new Set(recipes.flatMap(r => r.ingredients).map(i => i.ingredient))]; //il est sensible a la casse
 let ustensils = [...new Set(recipes.flatMap(r => r.ustensils))]; //il est sensible a la casse
 let appareils = [...new Set(recipes.map(res => res.appliance))];
-console.log(ustensils)
+
 //effectuer une recherche globale(name,ingredient,description)
 inputSearch.addEventListener("keyup", () => {
     let cardElms = document.querySelectorAll(".card")

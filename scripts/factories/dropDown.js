@@ -1,7 +1,11 @@
 export default function buttonFactory(uniqueIngredients, appareils, ustensils) {
-    let buttonTagIng = document.querySelector(".button-recherche")
-    let h1 = document.querySelector("h1 ,.ingredient-tag")
-    let h2 = document.querySelector("h2")
+    let buttonTag = document.querySelector(".button-recherche")
+    let ingTag = document.querySelector(".ingredient-tag")
+    let appTag = document.querySelector(".appareil-tag")
+    let rechercheIng = document.querySelector(".recherche-ingredients")
+    let rechercheApp = document.querySelector(".recherche-appareils")
+    let titreApp = document.querySelector(".titreAppareils ")
+    let titreIng = document.querySelector(".titreIngredients")
     let closeIcon = document.querySelector(".icon-close")
     let dropDownButtonA = document.querySelector(".dropdown-contentA ")
     let dropBtnIng = document.querySelector(".dropbtn-ingredients")
@@ -10,15 +14,12 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils) {
     let dropDownButtonC = document.querySelector(".dropdown-contentC ")
     let dropBtnUst = document.querySelector(".dropbtn-ustensiles")
     let inputIngredient = document.querySelector(".ingredients-input")
+    let inputAppareil = document.querySelector(".appareils-input")
     let buttonrechercheIng = document.querySelector(".button-recherche")
     inputIngredient.innerHTML = ""
+    inputAppareil.innerHTML = ""
+
     let getButtonDom = (ingredient) => {
-        appareils.forEach(appareil => {
-            let dropDownAppareils = document.createElement("a")
-            dropDownAppareils.setAttribute("class", `appareil-recipe `)
-            dropDownButtonB.appendChild(dropDownAppareils)
-            dropDownAppareils.textContent = appareil
-        })
         ustensils.forEach(ustensil => {
             let dropDownUstensiles = document.createElement("a")
             dropDownButtonC.appendChild(dropDownUstensiles)
@@ -32,13 +33,16 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils) {
             inputIngredient.value = ""
             dropDownButtonA.innerHTML = ""
             createIngredientsElement(uniqueIngredients)
-            h2.style.display = "none"
+            titreIng.style.display = "none"
             inputIngredient.style.display = 'block'
             dropBtnIng.style.width = "667px"
             dropDownButtonA.style.display = "grid"
             dropDownButtonA.style.gridTemplateColumns = "repeat(3, 1fr)";
             dropDownButtonA.style.width = "667px"
             dropDownButtonA.style.height = "auto"
+            dropDownButtonA.style.backgroundColor = "#3282f7"
+            dropDownButtonA.style.marginTop = "-1%"
+
         })
         inputIngredient.addEventListener("keyup", (e) => {
             if (!inputIngredient.value.trim() || inputIngredient.value.length < 3) {
@@ -56,6 +60,13 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils) {
         })
         //evenement appareils
         dropBtnApp.addEventListener("click", () => {
+            inputAppareil.innerHTML = ""
+            dropDownButtonB.innerHTML = ""
+            createAppareilsElement(appareils)
+            titreApp.style.display = "none"
+            inputAppareil.style.display = 'block'
+            dropDownButtonB.style.backgroundColor = "#68D9A4"
+            dropDownButtonB.style.marginTop = "-1%"
             dropBtnApp.style.width = "667px"
             dropDownButtonB.style.display = "grid"
             dropBtnUst.style.marginLeft = "34%"
@@ -78,19 +89,18 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils) {
     return { getButtonDom }
 
     function createIngredientsElement(ingredients) {
-
-        //  dropDownButtonA.style.gridTemplateColumns = "repeat(3, 1fr)";
-        //  dropDownButtonA.style.width = "667px"
-        //  dropDownButtonA.style.height = "auto"
         ingredients.forEach(el => {
             let dropDownIngredients = document.createElement("a")
             dropDownIngredients.setAttribute("class", `ingredients-recipe `)
             dropDownButtonA.appendChild(dropDownIngredients)
             dropDownIngredients.textContent = el
             dropDownIngredients.addEventListener("click", (e) => {
-                buttonTagIng.style.display = "block"
-                h1.textContent = el
-                h2.style.display = "block"
+                if (!appTag.value) {
+                    rechercheApp.style.display = "none"
+                }
+                buttonTag.style.display = "block"
+                ingTag.textContent = el
+                titreIng.style.display = "block"
                 inputIngredient.style.display = 'none'
                 dropBtnIng.style.width = "170px"
                 dropDownButtonA.style.display = "none"
@@ -100,5 +110,33 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils) {
 
 
         })
+    }
+    function createAppareilsElement(appareils) {
+        appareils.forEach(appareil => {
+            let dropDownAppareils = document.createElement("a")
+            dropDownAppareils.setAttribute("class", `appareil-recipe `)
+            dropDownButtonB.appendChild(dropDownAppareils)
+            dropDownAppareils.textContent = appareil
+            dropDownAppareils.addEventListener("click", (e) => {
+                buttonTag.style.display = "block"
+                appTag.textContent = appareil
+                titreApp.style.display = "block"
+                inputAppareil.style.display = 'none'
+                dropBtnApp.style.width = "170px"
+                dropDownButtonB.style.display = "none"
+                dropDownButtonB.style.width = "170px"
+                dropDownButtonB.style.height = "60px"
+                if (!ingTag.value) {
+                    rechercheIng.style.display = "none"
+                }
+            })
+
+        })
+
+
+
+
+
+
     }
 }
