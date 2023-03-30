@@ -1,9 +1,13 @@
-.icon-bas{
+.icon-bas-app,.icon-bas-ing,.icon-bas-ust{
     width: 16px;
 }
+.buttonTag {
+    display: flex!important;
+    align-items: flex-end;
+}
 .button-recherche{
-    /* display: flex; */
-    display: none;
+     display: none; 
+    /* display: none; */
     width: auto;
 }
 .dropdowns{
@@ -11,13 +15,11 @@
     display: flex;
     justify-content: flex-start;
 }
-.recherche-ingredients{
-display: flex;   
+.recherche-ingredients,.ingredientTag-flex{
+display: flex ;   
 justify-content: space-around;
  align-items: center;
- margin-top: 2%;
  color: white;
- padding: 8px;
  font-size: 16px;
  border: none;
  cursor: pointer;
@@ -25,14 +27,26 @@ justify-content: space-around;
  height: 37px;
  border-radius: 5px;
 }
-.recherche-appareils{
+.recherche-appareils,.appareilTag-flex{
+    display: flex;   
+    justify-content: space-around;
+     align-items: center;
+     color: white;
+     background-color: #68D9A4;
+     font-size: 16px;
+     border: none;
+     cursor: pointer;
+      /* width: auto;  */
+     height: 37px;
+     border-radius: 5px;  
+}
+.recherche-ustensils,.ustensilTag-flex{
     display: flex;   
     justify-content: space-around;
      align-items: center;
      margin-top: 2%;
      color: white;
-     padding: 8px;
-     background-color: #68D9A4;
+     background-color: #ED6454;
      font-size: 16px;
      border: none;
      cursor: pointer;
@@ -42,7 +56,7 @@ justify-content: space-around;
 }
 /* Style The Dropdown Button */
 
-.dropbtn-ustensiles{
+.dropbtn-ustensils{
     background-color:#ED6454 ;
     margin-left: 14%;
     /* width: 667px;  */
@@ -55,12 +69,15 @@ justify-content: space-around;
 }
 .dropbtn-appareils{
     background-color:#68D9A4 ;
-    margin-left: 7%;
+    margin-left: 2%;
      /* width: 667px;  */
     /* width: 170px;  */
 
 }
-.dropbtn-ustensiles,.dropbtn-ingredients,.dropbtn-appareils {
+.dropbtn-appareils {
+    margin-left: 8%;
+}
+.dropbtn-ustensils,.dropbtn-ingredients,.dropbtn-appareils {
     color: white;
     padding: 0px;
     font-size: 16px;
@@ -84,6 +101,9 @@ justify-content: space-around;
     min-width: 160px;
     z-index: 1;
   }
+  .dropdown-contentC{
+    margin-left: 10%;
+  }
   .dropbtn-appareils .dropdown-contentB{
     background-color:#68D9A4 ;
     /* display: grid;
@@ -100,6 +120,12 @@ justify-content: space-around;
   .appareils-input{
     display: none;
     background-color: #68D9A4!important;
+    color: #FFFFFF;
+    font-size :18px;
+  }
+  .ustensils-input{
+    display: none;
+    background-color: #ED6454!important;
     color: #FFFFFF;
     font-size :18px;
   }
@@ -122,7 +148,13 @@ justify-content: space-around;
     justify-content: space-around;
     align-items: center;
   }
-  .dropbtn-ustensiles .dropdown-contentC{
+  .dropbtn-ustensils{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .dropbtn-ustensils .dropdown-contentC{
     background-color:#ED6454 ;
     /* display: grid;
     grid-template-columns: repeat(3, 1fr); */
@@ -344,7 +376,7 @@ width: 100%;
     .rectangle-search {
         width: 98%;
     }
-    .dropbtn-ustensiles {
+    .dropbtn-ustensils {
         margin-top: 2%;
          margin-left: 0; 
     }

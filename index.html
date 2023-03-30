@@ -31,53 +31,72 @@
                     d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
             </svg>
         </div>
+        <div class="buttonTag">
         <div class="button-recherche">
             <button class="recherche-ingredients">
+                <div class="ingredientTag-flex">
                 <h1 class="ingredient-tag"></h1>
 
-                <img class="icon-close" src="assets/close.png" aria-label="icon pour fermer le menu"
+                <img class="closeTagIngredient" src="assets/close.png" aria-label="icon pour fermer le menu"
                     alt="icon pour fermer">
+                </div>
             </button>
             <button class="recherche-appareils">
+                <div class="appareilTag-flex">
+
                 <h1 class="appareil-tag"></h1>
 
-                <img class="icon-close" src="assets/close.png" aria-label="icon pour fermer le menu"
+                <img class="closeTagAppareil" src="assets/close.png" aria-label="icon pour fermer le menu"
                     alt="icon pour fermer">
+                    </div>
+            </button>
+            <button class="recherche-ustensils">
+                <div class="ustensilTag-flex">
+
+                <h1 class="ustensil-tag"></h1>
+                <img class="closeTagUstensil" src="assets/close.png" aria-label="icon pour fermer le menu"
+                    alt="icon pour fermer">
+                    </div>
             </button>
         </div>
+    </div>
+
         <div class="dropdowns">
             <div class="dropdown ingredient">
                 <button class="dropbtn-ingredients">
                     <h2 class="titreIngredients">Ingredients</h2>
                     <input class="ingredients-input" type="search" name="" id="search-ingredient"
-                placeholder="Rechercher un ingredient">
-                    <img class="icon-bas" src="assets/dropdown.png" aria-label="icon pour ouvrir le menu déroulant"
+                        placeholder="Rechercher un ingredient">
+                    <img class="icon-bas-ing" src="assets/dropdown.png" aria-label="icon pour ouvrir le menu déroulant"
                         alt="icon vers le bas">
                 </button>
-                
-            <div class="dropdown-contentA">
-            </div>
+
+                <div class="dropdown-contentA">
+                </div>
             </div>
             <div class="dropdown appareil">
                 <button class="dropbtn-appareils">
                     <h2 class="titreAppareils">Appareils</h2>
                     <input class="appareils-input" type="search" name="" id="search-appareil"
-                placeholder="Rechercher un appareil">
-                    
-                    <img class="icon-bas" src="assets/dropdown.png" aria-label="icon pour ouvrir le menu déroulant"
+                        placeholder="Rechercher un appareil">
+
+                    <img class="icon-bas-app" src="assets/dropdown.png" aria-label="icon pour ouvrir le menu déroulant"
                         alt="icon vers le bas">
                 </button>
                 <div class="dropdown-contentB">
                 </div>
             </div>
-            <div class="dropdown ustensile">
-                <button class="dropbtn-ustensiles">Ustensiles
-                    <div class="dropdown-contentC">
-
-                    </div>
-                    <img class="icon-bas" src="assets/dropdown.png" aria-label="icon pour ouvrir le menu déroulant"
+            <div class="dropdown ustensil">
+                <button class="dropbtn-ustensils">
+                    <h2 class="titreUstensils"> Ustensils</h2>
+                    <input class="ustensils-input" type="search" name="" id="search-ustensil"
+                        placeholder="Rechercher un appareil">
+                    <img class="icon-bas-ust" src="assets/dropdown.png" aria-label="icon pour ouvrir le menu déroulant"
                         alt="icon vers le bas">
                 </button>
+                <div class="dropdown-contentC">
+
+                </div>
             </div>
         </div>
         <div class="cards">
