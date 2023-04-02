@@ -5,7 +5,7 @@
 .buttonTag {
     display: block
 }
-.button-recherche{
+.groups-tag{
      display: flex!important;
      align-items: flex-end;
      margin-top: 1%;
@@ -17,7 +17,7 @@
     display: flex;
     justify-content: flex-start;
 }
-.recherche-ingredients,.ingredientTag-flex{
+.ingredient-groupe-tag,.appareil-groupe-tag,.ustensils-groupe-tag{
 display: flex ;   
 justify-content: space-around;
  align-items: center;
@@ -25,39 +25,17 @@ justify-content: space-around;
  font-size: 16px;
  border: none;
  cursor: pointer;
-  /* width: auto;  */
  height: 37px;
  border-radius: 5px;
+ 
+ 
 }
-.recherche-appareils,.appareilTag-flex{
-    display: flex;   
-    justify-content: space-around;
-     align-items: center;
-     color: white;
-     background-color: #68D9A4;
-     font-size: 16px;
-     border: none;
-     cursor: pointer;
+.appareil-groupe-tag,.ustensils-groupe-tag{
+   
      margin-left: 1%;
-      /* width: auto;  */
-     height: 37px;
-     border-radius: 5px;  
+    
 }
-.recherche-ustensils,.ustensilTag-flex{
-    display: flex;   
-    justify-content: space-around;
-     align-items: center;
-     margin-top: 2%;
-     color: white;
-     background-color: #ED6454;
-     font-size: 16px;
-     border: none;
-     cursor: pointer;
-     margin-left: 1%;
-      /* width: auto;  */
-     height: 37px;
-     border-radius: 5px;  
-}
+
 /* Style The Dropdown Button */
 
 .dropbtn-ustensils{
@@ -66,12 +44,12 @@ justify-content: space-around;
     /* width: 667px;  */
 
 }
-.dropbtn-ingredients,.recherche-ingredients{
+.dropbtn-ingredients,.ingredient-groupe-tag{
     background-color:#3282F7 ;
     /* width: 667px;
     height: 397px; */
 }
-.dropbtn-appareils{
+.dropbtn-appareils,.appareil-groupe-tag{
     background-color:#68D9A4 ;
     margin-left: 2%;
      /* width: 667px;  */

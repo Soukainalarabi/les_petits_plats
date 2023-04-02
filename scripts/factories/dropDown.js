@@ -1,5 +1,5 @@
 export default function buttonFactory(uniqueIngredients, appareils, ustensils, recipes) {
-    let buttonTag = document.querySelector(".button-recherche")
+    let buttonTag = document.querySelector(".groups-tag")
     let allButtonTag = document.querySelector(".buttonTag")
     let ingTag = document.querySelector(".ingredient-tag")
     let appTag = document.querySelector(".appareil-tag")
@@ -7,39 +7,39 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils, r
     let iconBasIng = document.querySelector(".icon-bas-ing")
     let iconBasApp = document.querySelector(".icon-bas-app")
     let iconBasUst = document.querySelector(".icon-bas-ust")
-    let rechercheIng = document.querySelector(".recherche-ingredients")
-    let rechercheApp = document.querySelector(".recherche-appareils")
-    let rechercheUst = document.querySelector(".recherche-ustensils")
-    let titreApp = document.querySelector(".titreAppareils ")
-    let titreIng = document.querySelector(".titreIngredients")
-    let titreUst = document.querySelector(".titreUstensils")
+    let ingredientGroupeTag = document.querySelector(".ingredient-groupe-tag")
+    let appareilGroupeTag = document.querySelector(".appareil-groupe-tag")
+    let ustensilGroupeTag= document.querySelector(".ustensil-groupe-tag")
     let closeTagIng = document.querySelector(".closeTagIngredient")
     let closeTagApp = document.querySelector(".closeTagAppareil")
     let closeTagUst = document.querySelector(".closeTagUstensil")
     let dropDownButtonA = document.querySelector(".dropdown-contentA ")
     let dropBtnIng = document.querySelector(".dropbtn-ingredients")
+    let titreIng = dropBtnIng.getElementsByTagName("h2")[0]
     let dropDownButtonB = document.querySelector(".dropdown-contentB ")
     let dropBtnApp = document.querySelector(".dropbtn-appareils")
+    let titreApp = dropBtnApp.getElementsByTagName("h2")[0]
     let dropDownButtonC = document.querySelector(".dropdown-contentC ")
     let dropBtnUst = document.querySelector(".dropbtn-ustensils")
+    let titreUst = dropBtnUst.getElementsByTagName("h2")[0]
     let inputIngredient = document.querySelector(".ingredients-input")
     let inputAppareil = document.querySelector(".appareils-input")
     let inputUstensil = document.querySelector(".ustensils-input")
     let buttonrechercheIng = document.querySelector(".button-recherche")
     inputIngredient.innerHTML = ""
     inputAppareil.innerHTML = ""
-    rechercheIng.style.display = "none"
-    rechercheApp.style.display = "none"
-    rechercheUst.style.display = "none"
+    ingredientGroupeTag.style.display = "none"
+    appareilGroupeTag.style.display = "none"
+    ustensilGroupeTag.style.display = "none"
     let getButtonDom = (ingredient) => {
         closeTagIng.addEventListener("click", (e) => {
-            rechercheIng.style.display = "none"
+            ingredientGroupeTag.style.display = "none"
         })
         closeTagApp.addEventListener("click", () => {
-            rechercheApp.style.display = "none"
+            appareilGroupeTag.style.display = "none"
         })
         closeTagUst.addEventListener("click", () => {
-            rechercheUst.style.display = "none"
+            ustensilGroupeTag.style.display = "none"
         })
         //evenement ingredients
         dropBtnIng.addEventListener("click", () => {
@@ -51,7 +51,8 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils, r
             dropDownButtonB.style.height = "60px"
             inputIngredient.value = ""
             dropDownButtonA.innerHTML = ""
-            createIngredientsElement(uniqueIngredients)
+            createComponentElements(uniqueIngredients, dropBtnIng, ingredientGroupeTag, dropDownButtonA)
+            // createIngredientsElement(uniqueIngredients)
             titreIng.style.display = "none"
             inputIngredient.style.display = 'block'
             dropBtnIng.style.width = "667px"
@@ -71,13 +72,13 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils, r
                 dropDownButtonA.style.height = "auto"
                 dropDownButtonA.innerHTML = ""
                 dropBtnIng.style.width = "667px"
-                createIngredientsElement(uniqueIngredients)
+                createComponentElements(uniqueIngredients, dropBtnIng, ingredientGroupeTag, dropDownButtonA)
                 return
             }
             let filtredIngredients = uniqueIngredients.filter(uniqueIngredient =>
                 uniqueIngredient.toUpperCase().includes(inputIngredient.value.toUpperCase().trim()))
             dropDownButtonA.innerHTML = ""
-            createIngredientsElement(filtredIngredients)
+            createComponentElements(filtredIngredients, dropBtnIng, ingredientGroupeTag, dropDownButtonA)
 
         })
         //evenement appareils
@@ -92,7 +93,9 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils, r
             ///test fermeture 
             inputAppareil.innerHTML = ""
             dropDownButtonB.innerHTML = ""
-            createAppareilsElement(appareils)
+            // createAppareilsElement(appareils)
+            createComponentElements(appareils, dropBtnApp, appareilGroupeTag, dropDownButtonB)
+
             titreApp.style.display = "none"
             iconBasApp.style.transform = "rotate(180deg)"
             inputAppareil.style.display = 'block'
@@ -112,13 +115,13 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils, r
                 dropDownButtonB.style.height = "auto"
                 dropDownButtonB.innerHTML = ""
                 dropBtnApp.style.width = "667px"
-                createAppareilsElement(appareils)
+                createComponentElements(appareils, dropBtnApp, appareilGroupeTag, dropDownButtonB)
                 return
             }
             let filtredAppareils = appareils.filter(appareil =>
                 appareil.toUpperCase().includes(inputAppareil.value.toUpperCase().trim()))
             dropDownButtonB.innerHTML = ""
-            createAppareilsElement(filtredAppareils)
+            createComponentElements(filtredAppareils, dropBtnApp, appareilGroupeTag, dropDownButtonB)
 
         })
         //evenement appareils
@@ -159,50 +162,7 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils, r
     }
     return { getButtonDom }
 
-    function createIngredientsElement(ingredients) {
-        ingredients.forEach(el => {
-            let dropDownIngredients = document.createElement("a")
-            dropDownIngredients.setAttribute("class", `ingredients-recipe `)
-            dropDownButtonA.appendChild(dropDownIngredients)
-            dropDownIngredients.textContent = el
-            dropDownIngredients.addEventListener("click", (e) => {
-                buttonTag.style.display = "flex"
-                allButtonTag.style.display = "block"
-                ingTag.textContent = el
-                titreIng.style.display = "block"
-                rechercheIng.style.display = "flex"
-                inputIngredient.style.display = 'none'
-                dropBtnIng.style.width = "170px"
-                dropDownButtonA.style.display = "none"
-                dropDownButtonA.style.width = "170px"
-                dropDownButtonA.style.height = "60px"
-                iconBasIng.style.transform = "rotate(0deg)"
-
-            })
-
-        })
-    }
-    function createAppareilsElement(appareils) {
-        appareils.forEach(appareil => {
-            let dropDownAppareils = document.createElement("a")
-            dropDownAppareils.setAttribute("class", `appareil-recipe `)
-            dropDownButtonB.appendChild(dropDownAppareils)
-            dropDownAppareils.textContent = appareil
-            dropDownAppareils.addEventListener("click", (e) => {
-                buttonTag.style.display = "block"
-                appTag.textContent = appareil
-                titreApp.style.display = "block"
-                inputAppareil.style.display = 'none'
-                allButtonTag.style.display = "block"
-                rechercheApp.style.display = "flex"
-                dropBtnApp.style.width = "170px"
-                dropDownButtonB.style.display = "none"
-                dropDownButtonB.style.width = "170px"
-                dropDownButtonB.style.height = "60px"
-                iconBasApp.style.transform = "rotate(0deg)"
-            })
-        })
-    }
+    
     function createUstensilsElement(ustensils) {
         ustensils.forEach(ustensil => {
             let dropDownUstensils = document.createElement("a")
@@ -216,6 +176,24 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils, r
                 dropDownButtonC.style.height = "auto"
                 rechercheUst.style.display = "flex"
 
+            })
+        })
+    }
+    function createComponentElements(components, dropBtnComponent, componentGroupeTag, dropDownContent) {
+        components.forEach(component => {
+            let componentElement = document.createElement("a")
+            dropDownContent.appendChild(componentElement)
+            componentElement.textContent = component
+            componentElement.addEventListener("click", (e) => {
+                componentGroupeTag.getElementsByTagName("h1")[0].textContent = component
+                dropBtnComponent.getElementsByTagName("h2")[0].style.display = "block"
+                componentGroupeTag.style.display = "flex"
+                dropBtnComponent.getElementsByTagName("input")[0].style.display = 'none'
+                dropBtnComponent.style.width = "170px"
+                dropDownContent.style.display = "none"
+                dropDownContent.style.width = "170px"
+                dropDownContent.style.height = "60px"
+                dropBtnComponent.getElementsByTagName("img")[0].style.transform = "rotate(0deg)"
             })
         })
     }
