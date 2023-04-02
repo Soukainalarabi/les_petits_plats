@@ -1,8 +1,9 @@
-export default function buttonFactory(uniqueIngredients, appareils, ustensils) {
+export default function buttonFactory(uniqueIngredients, appareils, ustensils, recipes) {
     let buttonTag = document.querySelector(".button-recherche")
+    let allButtonTag = document.querySelector(".buttonTag")
     let ingTag = document.querySelector(".ingredient-tag")
     let appTag = document.querySelector(".appareil-tag")
-    let appButton=document.querySelector(".dropbtn-appareils   ")
+    let appButton = document.querySelector(".dropbtn-appareils")
     let iconBasIng = document.querySelector(".icon-bas-ing")
     let iconBasApp = document.querySelector(".icon-bas-app")
     let iconBasUst = document.querySelector(".icon-bas-ust")
@@ -25,39 +26,24 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils) {
     let inputAppareil = document.querySelector(".appareils-input")
     let inputUstensil = document.querySelector(".ustensils-input")
     let buttonrechercheIng = document.querySelector(".button-recherche")
-    // rechercheIng.style.display = "none" //ne pas afficher les tag par defaut
-    // rechercheApp.style.display = "none"
-    // rechercheUst.style.display = "none"
-
     inputIngredient.innerHTML = ""
     inputAppareil.innerHTML = ""
+    rechercheIng.style.display = "none"
+    rechercheApp.style.display = "none"
+    rechercheUst.style.display = "none"
     let getButtonDom = (ingredient) => {
-        closeTagIng.addEventListener("click", () => {
-            console.log(closeTagIng)
+        closeTagIng.addEventListener("click", (e) => {
             rechercheIng.style.display = "none"
-
         })
         closeTagApp.addEventListener("click", () => {
-            console.log(closeTagApp)
-
             rechercheApp.style.display = "none"
-
         })
         closeTagUst.addEventListener("click", () => {
-            console.log(closeTagUst)
-
             rechercheUst.style.display = "none"
-
         })
         //evenement ingredients
         dropBtnIng.addEventListener("click", () => {
-            // test
-            rechercheIng.style.display = "block"
-            rechercheApp.style.display = "none"
-            rechercheUst.style.display = "none"
             titreApp.style.display = "block"
-             iconBasApp.style.transform = "rotate(0deg)"
-
             inputAppareil.style.display = 'none'
             dropBtnApp.style.width = "170px"
             dropDownButtonB.style.display = "none"
@@ -73,12 +59,12 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils) {
             dropDownButtonA.style.display = "grid"
             dropDownButtonA.style.gridTemplateColumns = "repeat(3, 1fr)";
             dropDownButtonA.style.width = "667px"
-            dropDownButtonA.style.height = "auto"
+            dropDownButtonA.style.height = "397px"
+            dropDownButtonA.style.overflow = "scroll"
+
             dropDownButtonA.style.backgroundColor = "#3282f7"
             dropDownButtonA.style.marginTop = "-1%"
             appButton.style.marginLeft = "8%"
-
-
         })
         inputIngredient.addEventListener("keyup", (e) => {
             if (!inputIngredient.value.trim() || inputIngredient.value.length < 3) {
@@ -96,19 +82,14 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils) {
         })
         //evenement appareils
         dropBtnApp.addEventListener("click", () => {
-            // buttonTag.style.display = "flex"
-                rechercheIng.style.display = "block"
-                rechercheApp.style.display = "none"
-                rechercheUst.style.display = "none"
-                titreIng.style.display = "block"
-                iconBasIng.style.transform = "rotate(0deg)"
-
-                inputIngredient.style.display = 'none'
-                dropBtnIng.style.width = "170px"
-                dropDownButtonA.style.display = "none"
-                dropDownButtonA.style.width = "170px"
-                dropDownButtonA.style.height = "60px"
-                ///test fermeture 
+            //Faire une condition qui permet de ne pas afficher un tag s'il est vide
+            titreIng.style.display = "block"
+            inputIngredient.style.display = 'none'
+            dropBtnIng.style.width = "170px"
+            dropDownButtonA.style.display = "none"
+            dropDownButtonA.style.width = "170px"
+            dropDownButtonA.style.height = "60px"
+            ///test fermeture 
             inputAppareil.innerHTML = ""
             dropDownButtonB.innerHTML = ""
             createAppareilsElement(appareils)
@@ -158,6 +139,8 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils) {
             dropDownButtonC.style.marginLeft = "5%"
             dropDownButtonC.style.width = "667px"
             dropDownButtonC.style.height = "397px"
+            dropDownButtonC.style.overflow = "scroll"
+
         })
         inputUstensil.addEventListener("keyup", (e) => {
             if (!inputUstensil.value.trim() || inputUstensil.value.length < 3) {
@@ -171,12 +154,8 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils) {
                 ustensil.toUpperCase().includes(inputUstensil.value.toUpperCase().trim()))
             dropDownButtonC.innerHTML = ""
             createUstensilsElement(filtredUstensils)
-
         })
         //evenement ustensils
-
-
-
     }
     return { getButtonDom }
 
@@ -188,18 +167,18 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils) {
             dropDownIngredients.textContent = el
             dropDownIngredients.addEventListener("click", (e) => {
                 buttonTag.style.display = "flex"
-                rechercheIng.style.display = "block"
-                rechercheApp.style.display = "none"
-                rechercheUst.style.display = "none"
+                allButtonTag.style.display = "block"
                 ingTag.textContent = el
                 titreIng.style.display = "block"
+                rechercheIng.style.display = "flex"
                 inputIngredient.style.display = 'none'
                 dropBtnIng.style.width = "170px"
                 dropDownButtonA.style.display = "none"
                 dropDownButtonA.style.width = "170px"
                 dropDownButtonA.style.height = "60px"
-            })
+                iconBasIng.style.transform = "rotate(0deg)"
 
+            })
 
         })
     }
@@ -213,20 +192,15 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils) {
                 buttonTag.style.display = "block"
                 appTag.textContent = appareil
                 titreApp.style.display = "block"
-                rechercheIng.style.display = "none"
-                rechercheApp.style.display = "block"
-                rechercheUst.style.display = "none"
                 inputAppareil.style.display = 'none'
+                allButtonTag.style.display = "block"
+                rechercheApp.style.display = "flex"
                 dropBtnApp.style.width = "170px"
                 dropDownButtonB.style.display = "none"
                 dropDownButtonB.style.width = "170px"
                 dropDownButtonB.style.height = "60px"
-                // if (!ingTag.value) {
-                //     rechercheIng.style.display = "none"
-                // }
+                iconBasApp.style.transform = "rotate(0deg)"
             })
-
-
         })
     }
     function createUstensilsElement(ustensils) {
@@ -240,16 +214,10 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils) {
                 dropDownButtonC.style.gridTemplateColumns = "repeat(3, 1fr)";
                 dropDownButtonC.style.width = "667px"
                 dropDownButtonC.style.height = "auto"
+                rechercheUst.style.display = "flex"
+
             })
-
-
         })
-
-
-
-
-
-
     }
 }
 

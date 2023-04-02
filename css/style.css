@@ -1,12 +1,14 @@
 .icon-bas-app,.icon-bas-ing,.icon-bas-ust{
     width: 16px;
+    transform: rotate(0deg)
 }
 .buttonTag {
-    display: flex!important;
-    align-items: flex-end;
+    display: block
 }
 .button-recherche{
-     display: none; 
+     display: flex!important;
+     align-items: flex-end;
+     margin-top: 1%;
     /* display: none; */
     width: auto;
 }
@@ -36,6 +38,7 @@ justify-content: space-around;
      font-size: 16px;
      border: none;
      cursor: pointer;
+     margin-left: 1%;
       /* width: auto;  */
      height: 37px;
      border-radius: 5px;  
@@ -50,6 +53,7 @@ justify-content: space-around;
      font-size: 16px;
      border: none;
      cursor: pointer;
+     margin-left: 1%;
       /* width: auto;  */
      height: 37px;
      border-radius: 5px;  
@@ -182,8 +186,8 @@ justify-content: space-around;
   /* Links inside the dropdown */
   .dropdown-contentA a, .dropdown-contentB a, .dropdown-contentC a{
     color: white;
-    pointer:cursor;
-    text-align: start;
+    cursor: grab;
+        text-align: start;
     padding: 12px 19px;
     text-decoration: none;
     display: block;

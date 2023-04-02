@@ -2,8 +2,9 @@ import recipes from "./data/recipes.js"
 import cardFactory from "./factories/recipeCard.js"
 import buttonFactory from "./factories/dropDown.js"
 let cards = document.querySelector(".cards")
-let dropDowns = document.querySelector(".dropdowns")
 let inputSearch = document.getElementById("contenu-search")
+let inputIngredient = document.querySelector(".ingredients-tag")
+
 let uniqueIngredients = [...new Set(recipes.flatMap(r => r.ingredients).map(i => i.ingredient))]; //il est sensible a la casse
 let ustensils = [...new Set(recipes.flatMap(r => r.ustensils))]; //il est sensible a la casse
 let appareils = [...new Set(recipes.map(res => res.appliance))];
@@ -27,6 +28,7 @@ inputSearch.addEventListener("keyup", () => {
         recipe.description.toUpperCase().includes(inputSearch.value.toUpperCase().trim()) ||
         recipe.ingredients.some(ingredient => ingredient.ingredient.toUpperCase().includes(inputSearch.value.toUpperCase().trim()))
     );
+
     result.forEach(res => {
         document.getElementById(`recipe-${res.id}`).style.display = "block"
     })
@@ -34,7 +36,7 @@ inputSearch.addEventListener("keyup", () => {
 
 let showRecipes = () => {
     recipes.forEach(recipe => {
-        let cardFactoryModel = cardFactory(recipe, uniqueIngredients,)
+        let cardFactoryModel = cardFactory(recipe, uniqueIngredients)
         let cardDom = cardFactoryModel.getCardDom()
         cards.appendChild(cardDom)
 
@@ -42,7 +44,7 @@ let showRecipes = () => {
 }
 let showDropDown = () => {
 
-    let buttonFactoryModel = buttonFactory(uniqueIngredients, appareils, ustensils)
+    let buttonFactoryModel = buttonFactory(uniqueIngredients, appareils, ustensils, recipes)
     let ButtonDom = buttonFactoryModel.getButtonDom()
     // dropDowns.appendChild(ButtonDom)
 
