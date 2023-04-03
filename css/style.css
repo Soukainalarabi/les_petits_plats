@@ -17,7 +17,7 @@
     display: flex;
     justify-content: flex-start;
 }
-.ingredient-groupe-tag,.appareil-groupe-tag,.ustensils-groupe-tag{
+.ingredient-groupe-tag,.appareil-groupe-tag,.ustensil-groupe-tag{
 display: flex ;   
 justify-content: space-around;
  align-items: center;
@@ -30,7 +30,7 @@ justify-content: space-around;
  
  
 }
-.appareil-groupe-tag,.ustensils-groupe-tag{
+.appareil-groupe-tag,.ustensil-groupe-tag{
    
      margin-left: 1%;
     
@@ -38,9 +38,9 @@ justify-content: space-around;
 
 /* Style The Dropdown Button */
 
-.dropbtn-ustensils{
+.dropbtn-ustensils,.ustensil-groupe-tag{
     background-color:#ED6454 ;
-    margin-left: 14%;
+    /* margin-left: 14%; */
     /* width: 667px;  */
 
 }
@@ -135,6 +135,7 @@ justify-content: space-around;
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
+    margin-left: 16%;
   }
   .dropbtn-ustensils .dropdown-contentC{
     background-color:#ED6454 ;
@@ -164,27 +165,26 @@ justify-content: space-around;
   /* Links inside the dropdown */
   .dropdown-contentA a, .dropdown-contentB a, .dropdown-contentC a{
     color: white;
-    cursor: grab;
-        text-align: start;
+    cursor: pointer;
+    text-align: start;
     padding: 12px 19px;
     text-decoration: none;
     display: block;
     
   }
-  
+  .dropdown-contentB{
+    background-color: #68D9A4;
+  }
+  .dropdown-contentA{
+    background-color:#3282F7
+  }
+  .dropdown-contentC{
+    background-color:#ED6454
+  }
   /* Change color of dropdown links on hover */
   .dropdown-contentA a:hover , .dropdown-contentB a:hover , .dropdown-contentC a:hover 
   {background-color: hsl(0, 13%, 65%)}
   
-  /* Show the dropdown menu on hover */
-  /* .dropdown:hover  .dropdown-contentA , .dropdown:hover .dropdown-contentB,  .dropdown:hover .dropdown-contentC{
-    display: block;
-  } */
-  
-  /* Change the background color of the dropdown button when the dropdown content is shown */
-  /* .dropdown:hover .dropbtn {
-    background-color: #3282F7;
-  } */
 .container{
     margin: auto;
     max-width: 1200px;
