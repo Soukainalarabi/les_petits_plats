@@ -42,7 +42,9 @@ export default function cardFactory(recipe, uniqueIngredients) {
             ingredientsUl.appendChild(ingredientsDetails)
             let quantityInit = ingredient.quantity ? ":" + ingredient.quantity : ""
             let unitInit = ingredient.unit ? ingredient.unit : ""
-            ingredientsDetails.textContent = ingredient.ingredient + quantityInit + unitInit
+            // ingredientsDetails.textContent = ingredient.ingredient + quantityInit + unitInit
+            ingredientsDetails.innerHTML = `<strong>${ingredient.ingredient}</strong> ${quantityInit} ${unitInit}`
+
         });
         return (cardRecipes)
 

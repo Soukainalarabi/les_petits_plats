@@ -4,7 +4,7 @@ export function createComponentElements(components, dropBtnComponent, componentG
         let componentElement = document.createElement("a")
         dropDownContent.appendChild(componentElement)
         componentElement.textContent = component
-        componentElement.addEventListener("click", (e) => {
+        componentElement.addEventListener("click", () => {
             componentGroupeTag.getElementsByTagName("h1")[0].textContent = component
             dropBtnComponent.getElementsByTagName("h2")[0].style.display = "block"
             componentGroupeTag.style.display = "flex"
@@ -55,5 +55,12 @@ export function hideDropDownComponents(dropBtnComponent, dropDownContent) {
     dropBtnComponent.getElementsByTagName("input")[0].style.display = 'none'
     dropBtnComponent.getElementsByTagName("h2")[0].style.display = "block"
     dropBtnComponent.getElementsByTagName("img")[0].style.transform = "rotate(0deg)"
+   
 }
+//a revoir 
+// export function hideDropDownComponentsIcon(dropBtnComponent, dropDownContent) {
+//     dropBtnComponent.getElementsByTagName("img")[0].addEventListener("click", () => {
+//         hideDropDownComponents(dropBtnComponent, dropDownContent)
+//     })
+// }
 export default { createComponentElements, searchInput, showDropDownComponents, hideDropDownComponents }

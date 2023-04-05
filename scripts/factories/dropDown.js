@@ -21,8 +21,8 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils, r
     ingredientGroupeTag.style.display = "none"
     appareilGroupeTag.style.display = "none"
     ustensilGroupeTag.style.display = "none"
-    let getButtonDom = (ingredient) => {
-        closeTagIng.addEventListener("click", (e) => {
+    let getButtonDom = () => {
+        closeTagIng.addEventListener("click", () => {
             ingredientGroupeTag.style.display = "none"
         })
         closeTagApp.addEventListener("click", () => {
@@ -34,42 +34,54 @@ export default function buttonFactory(uniqueIngredients, appareils, ustensils, r
         //evenement ingredients
         dropBtnIng.addEventListener("click", () => {
             hideDropDownComponents(dropBtnApp, dropDownButtonB)
-            hideDropDownComponents(dropBtnUst, dropDownButtonC)  
+            hideDropDownComponents(dropBtnUst, dropDownButtonC)
             showDropDownComponents(uniqueIngredients, dropBtnIng, ingredientGroupeTag, dropDownButtonA)
+            // hideDropDownComponentsIcon(dropBtnIng, dropDownButtonA)
             dropBtnApp.style.marginLeft = "8%"
+            dropBtnUst.style.marginLeft = "16%"
+
         })
-        inputIngredient.addEventListener("keyup", (e) => {
+        inputIngredient.addEventListener("keyup", () => {
             searchInput(inputIngredient, uniqueIngredients, dropDownButtonA, dropBtnIng, ingredientGroupeTag)
+            dropDownButtonA.style.height="auto"
         })
         //evenement appareils
         dropBtnApp.addEventListener("click", () => {
             hideDropDownComponents(dropBtnIng, dropDownButtonA)
-            hideDropDownComponents(dropBtnUst, dropDownButtonC)  
+            hideDropDownComponents(dropBtnUst, dropDownButtonC)
             showDropDownComponents(appareils, dropBtnApp, appareilGroupeTag, dropDownButtonB)
+            // hideDropDownComponentsIcon(dropBtnApp, dropDownButtonB)
+
             dropBtnUst.style.marginLeft = "16%"
             dropDownButtonB.style.marginLeft = "2%"
             appButton.style.marginLeft = "2%"
         })
-        inputAppareil.addEventListener("keyup", (e) => {
+        inputAppareil.addEventListener("keyup", () => {
             searchInput(inputAppareil, appareils, dropDownButtonB, dropBtnApp, appareilGroupeTag)
+            dropDownButtonB.style.height="auto"
+
         })
         //evenement appareils
         dropBtnUst.addEventListener("click", () => {
             hideDropDownComponents(dropBtnIng, dropDownButtonA)
-            hideDropDownComponents(dropBtnApp, dropDownButtonB)  
+            hideDropDownComponents(dropBtnApp, dropDownButtonB)
             showDropDownComponents(ustensils, dropBtnUst, ustensilGroupeTag, dropDownButtonC)
-            dropBtnUst.style.marginLeft = "5%" 
+            // hideDropDownComponentsIcon(dropBtnUst, dropDownButtonC)
+
+            dropBtnUst.style.marginLeft = "5%"
             dropDownButtonC.style.marginLeft = "5%"
             dropDownButtonC.style.marginRight = "2%"
             dropBtnApp.style.marginLeft = "10%"
         })
-        inputUstensil.addEventListener("keyup", (e) => {
-            inputUstensil.addEventListener("keyup", (e) => {
+        inputUstensil.addEventListener("keyup", () => {
+            inputUstensil.addEventListener("keyup", () => {
                 searchInput(inputUstensil, ustensils, dropDownButtonC, dropBtnUst, ustensilGroupeTag)
+                dropDownButtonC.style.height="auto"
+
             })
         })
     }
     return { getButtonDom }
-    
+
 }
 
