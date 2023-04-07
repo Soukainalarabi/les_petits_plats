@@ -30,10 +30,8 @@ inputSearch.addEventListener("keyup", () => {
         recipe.description.toUpperCase().includes(inputSearch.value.toUpperCase().trim()) ||
         recipe.ingredients.some(ingredient => ingredient.ingredient.toUpperCase().includes(inputSearch.value.toUpperCase().trim()))
     );
+    filterRecipes(result)
 
-    result.forEach(res => {
-        document.getElementById(`recipe-${res.id}`).style.display = "block"
-    })
 });
 
 let showRecipes = () => {
@@ -44,16 +42,23 @@ let showRecipes = () => {
 
     });
 }
-// let showRecipes = () => {
-//     for (let recipe of recipes) {
-//         let cardFactoryModel = cardFactory(recipe, uniqueIngredients)
-//         let cardDom = cardFactoryModel.getCardDom()
-//         cards.appendChild(cardDom)
-//     }
-// }
-let showDropDown = () => {
+let filterRecipes = (recipeListe) => {
+    let cardElms = document.querySelectorAll(".card")
 
-    let buttonFactoryModel = buttonFactory(uniqueIngredients, appareils, ustensils, recipes)
+    cardElms.forEach(card => {
+        card.style.display = "none"
+    })
+    recipeListe.forEach(res => {
+        document.getElementById(`recipe-${res.id}`).style.display = "block"
+    })
+    let recipesUniqueIngredients = [...new Set(recipeListe.flatMap(r => r.ingredients).map(i => i.ingredient))]; //il est sensible a la casse
+    let recipesUstensils = [...new Set(recipeListe.flatMap(r => r.ustensils))]; //il est sensible a la casse
+    let recipesAppareils = [...new Set(recipeListe.map(res => res.appliance))];
+    showDropDown(recipesUniqueIngredients, recipesUstensils, recipesAppareils, recipeListe)
+}
+
+let showDropDown = (ingredientsParams, appareilsParams, ustensilsParams, recipesParams) => {
+    let buttonFactoryModel = buttonFactory(ingredientsParams, appareilsParams, ustensilsParams, recipesParams, filterRecipes)
     let ButtonDom = buttonFactoryModel.getButtonDom()
 
 
@@ -61,7 +66,7 @@ let showDropDown = () => {
 
 
 }
-showDropDown()
+showDropDown(uniqueIngredients, appareils, ustensils, recipes)
 showRecipes()
 
 
