@@ -37,7 +37,10 @@ justify-content: space-around;
 }
 
 /* Style The Dropdown Button */
+.dropbtn-ustensils{
+    margin-left: 5%;
 
+}
 .dropbtn-ustensils,.ustensil-groupe-tag{
     background-color:#ED6454 ;
     /* margin-left: 14%; */
@@ -51,14 +54,12 @@ justify-content: space-around;
 }
 .dropbtn-appareils,.appareil-groupe-tag{
     background-color:#68D9A4 ;
-    margin-left: 2%;
+    /* margin-left: 2%; */
      /* width: 667px;  */
     /* width: 170px;  */
 
 }
-.dropbtn-appareils {
-    margin-left: 8%;
-}
+
 .dropbtn-ustensils,.dropbtn-ingredients,.dropbtn-appareils {
     color: white;
     padding: 0px;
@@ -93,7 +94,7 @@ justify-content: space-around;
 
   }
   .dropdown-contentB{
-    margin-left: 7%;
+    margin-left: 2%;
   }
   .dropbtn-ingredients .dropdown-contentA{
     background-color:#3282F7!important ;
@@ -129,13 +130,21 @@ justify-content: space-around;
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
+    margin-left: 6%; 
+
   }
+  #message-erreur{
+    display: none;
+  }
+  /* .dropbtn-ingredients{
+    margin-right: 2%;
+  } */
   .dropbtn-ustensils{
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
-    margin-left: 16%;
+    margin-left: 12%; 
   }
   .dropbtn-ustensils .dropdown-contentC{
     background-color:#ED6454 ;

@@ -1,4 +1,4 @@
-export default function cardFactory(recipe, uniqueIngredients) {
+export default function cardFactory(recipe) {
     let cardRecipes = document.createElement("div")
     let imgCard = document.createElement("div")
     let bodyCard = document.createElement("div")
