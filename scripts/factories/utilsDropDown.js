@@ -24,7 +24,6 @@ export let showCardsRecipes = (recipeListe) => {
     let cardElms = document.querySelectorAll(".card")
     let cards = document.querySelector(".cards")
     let msgErreur = document.getElementById("message-erreur")
-    console.log(msgErreur)
     cardElms.forEach(card => {
         card.style.display = "none"
         cards.style.display = "block"
@@ -48,7 +47,6 @@ export function searchInput(inputComponent, components, dropDownContent, dropBtn
     let filtredComponents = components.filter(component =>
         component.toUpperCase().includes(inputComponent.value.toUpperCase().trim()))
     dropDownContent.innerHTML = ""
-
     createComponentElements(filtredComponents, dropBtnComponent, componentGroupeTag, dropDownContent)
 }
 export function showDropDownComponents(components, dropBtnComponent, componentGroupeTag, dropDownContent) {
@@ -78,35 +76,62 @@ export function createDropDownDom() {
     let ingredientsDom = document.querySelector(".dropdown-ingredients")
     let appareilsDom = document.querySelector(".dropdown-appareils")
     let ustensilsDom = document.querySelector(".dropdown-ustensils")
-    ingredientsDom.innerHTML = `<button class="dropbtn-ingredients">
-    <h2 class="title">Ingredients</h2>
-    <input class="ingredients-input" type="search" name="" id="search-ingredient"
+    ingredientsDom.innerHTML = `<button class="dropbtn-ingredients click-ingredients">
+    <h2 class="title click-ingredients">Ingredients</h2>
+    <input class="ingredients-input click-ingredients" type="search" name="" id="search-ingredient"
         placeholder="Rechercher un ingredient">
-    <img class="icon-bas-ing" src="assets/dropdown.png" aria-label="icon pour ouvrir le menu déroulant"
+    <img class="icon-bas-ing click-ingredients" src="assets/dropdown.png" aria-label="icon pour ouvrir le menu déroulant"
         alt="icon vers le bas">
 </button>
 <div class="dropdown-contentA">
 </div>`
-    appareilsDom.innerHTML = ` <button class="dropbtn-appareils">
-    <h2 class="title">Appareils</h2>
-    <input class="appareils-input" type="search" name="" id="search-appareil"
+    appareilsDom.innerHTML = ` <button class="dropbtn-appareils click-appareils">
+    <h2 class="title click-appareils">Appareils</h2>
+    <input class="appareils-input click-appareils" type="search" name="" id="search-appareil"
         placeholder="Rechercher un appareil">
 
-    <img class="icon-bas-app" src="assets/dropdown.png" aria-label="icon pour ouvrir le menu déroulant"
+    <img class="icon-bas-app click-appareils" src="assets/dropdown.png" aria-label="icon pour ouvrir le menu déroulant"
         alt="icon vers le bas">
 </button>
 <div class="dropdown-contentB">
 </div>`
-
-    ustensilsDom.innerHTML = `<button class="dropbtn-ustensils">
-    <h2 class="title"> Ustensils</h2>
-    <input class="ustensils-input" type="search" name="" id="search-ustensil"
+    ustensilsDom.innerHTML = `<button class="dropbtn-ustensils click-ustensils">
+    <h2 class="title click-ustensils"> Ustensils</h2>
+    <input class="ustensils-input click-ustensils" type="search" name="" id="search-ustensil"
         placeholder="Rechercher un appareil">
-    <img class="icon-bas-ust" src="assets/dropdown.png" aria-label="icon pour ouvrir le menu déroulant"
+    <img class="icon-bas-ust click-ustensils" src="assets/dropdown.png" aria-label="icon pour ouvrir le menu déroulant"
         alt="icon vers le bas">
 </button>
 <div class="dropdown-contentC">
 
 </div>`
 }
-export default { createComponentElements, searchInput, showDropDownComponents, hideDropDownComponents, createDropDownDom, componentGroupeTag, showCardsRecipes }
+// export default { createComponentElements, searchInput, showDropDownComponents, hideDropDownComponents, createDropDownDom, componentGroupeTag, showCardsRecipes }
+// export function createComponentElements(components, dropBtnComponent, componentGroupeTag, dropDownContent,iconCloseTagComponent,componentElementTag) {
+//     dropDownContent.innerHTML = ""
+//     components.forEach(component => {
+//         let componentElement = document.createElement("a")
+//         dropDownContent.appendChild(componentElement)
+//         componentElement.textContent = component
+//         componentElement.addEventListener("click", () => {
+//             let componentElementTag = document.createElement("h1")
+//             componentGroupeTag.appendChild(componentElementTag)
+//             let iconCloseTagComponent=document.createElement("img")
+//             iconCloseTagComponent.setAttribute("class","closeTagComponent")
+//             iconCloseTagComponent.setAttribute("src","assets/close.png")
+//             iconCloseTagComponent.setAttribute("aria-label","icon pour fermer le menu")
+//             componentGroupeTag.appendChild(iconCloseTag)
+//             componentElementTag.textContent = component
+//             dropBtnComponent.getElementsByTagName("h2")[0].style.display = "block"
+//             componentGroupeTag.style.display = "flex"
+//             dropBtnComponent.getElementsByTagName("input")[0].style.display = 'none'
+//             dropBtnComponent.style.width = "170px"
+//             dropDownContent.style.display = "none"
+//             dropDownContent.style.width = "170px"
+//             dropDownContent.style.height = "60px"
+//             dropBtnComponent.getElementsByTagName("img")[0].style.transform = "rotate(0deg)"
+//             showCardsRecipes(filterRecipesByTagsAndInputSearch()
+//             )
+//         })
+//     })
+// }

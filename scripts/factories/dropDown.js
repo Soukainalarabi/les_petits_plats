@@ -1,6 +1,6 @@
 import { searchInput, showDropDownComponents, hideDropDownComponents, createDropDownDom, componentGroupeTag, showCardsRecipes } from "./utilsDropDown.js"
 import { getUniqueIngredients, getUniqueAppareils, getUniqueUstensils, filterRecipesByTagsAndInputSearch } from "../service/recipe-service.js"
-export default function buttonFactory() {
+export default function dropDownFactory() {
     createDropDownDom()
     let ingredientGroupeTag = document.querySelector(".ingredient-groupe-tag")
     let appareilGroupeTag = document.querySelector(".appareil-groupe-tag")
@@ -19,25 +19,34 @@ export default function buttonFactory() {
     let inputUstensil = document.querySelector(".ustensils-input")
     let dropDownIng = document.querySelector(".dropdown-ingredients")
     let dropDownApp = document.querySelector(".dropdown-appareils")
+    window.onclick = function (event) {
+        if (!event.target.matches('.click-ingredients')) {
+            hideDropDownComponents(dropBtnIng, dropDownButtonA)
+        }
+        if (!event.target.matches('.click-appareils')) {
+            hideDropDownComponents(dropBtnApp, dropDownButtonB)
+        }
+        if (!event.target.matches('.click-ustensils')) {
+            hideDropDownComponents(dropBtnUst, dropDownButtonC)
+        }
+
+    }
     inputIngredient.innerHTML = ""
     inputAppareil.innerHTML = ""
     componentGroupeTag(ingredientGroupeTag)
     componentGroupeTag(appareilGroupeTag)
     componentGroupeTag(ustensilGroupeTag)
-    let getButtonDom = () => {
+    let getDropDownDom = () => {
         closeTagIng.addEventListener("click", () => {
             ingredientGroupeTag.style.display = "none"
             ingredientGroupeTag.getElementsByTagName("h1")[0].textContent = ""
             showCardsRecipes(filterRecipesByTagsAndInputSearch())
-
-            /////initialiser la liste des ingredients lors du fermeture du tag 
         })
         closeTagApp.addEventListener("click", () => {
             appareilGroupeTag.style.display = "none"
             appareilGroupeTag.getElementsByTagName("h1")[0].textContent = ""
             showCardsRecipes(filterRecipesByTagsAndInputSearch()
             )
-
         })
         closeTagUst.addEventListener("click", () => {
             ustensilGroupeTag.style.display = "none"
@@ -45,13 +54,10 @@ export default function buttonFactory() {
             showCardsRecipes(filterRecipesByTagsAndInputSearch()
             )
         })
-        //evenement ingredients
         dropBtnIng.addEventListener("click", () => {
-            hideDropDownComponents(dropBtnApp, dropDownButtonB)
-            hideDropDownComponents(dropBtnUst, dropDownButtonC)
+
             const result = filterRecipesByTagsAndInputSearch()
             showDropDownComponents(getUniqueIngredients(result), dropBtnIng, ingredientGroupeTag, dropDownButtonA)
-        
         })
         inputIngredient.addEventListener("keyup", () => {
             const result = filterRecipesByTagsAndInputSearch()
@@ -61,8 +67,7 @@ export default function buttonFactory() {
         //evenement appareils
         dropBtnApp.addEventListener("click", () => {
             const result = filterRecipesByTagsAndInputSearch()
-            hideDropDownComponents(dropBtnIng, dropDownButtonA)
-            hideDropDownComponents(dropBtnUst, dropDownButtonC)
+
             showDropDownComponents(getUniqueAppareils(result), dropBtnApp, appareilGroupeTag, dropDownButtonB)
             dropDownIng.style.marginRight = "1%"
             dropBtnApp.style.marginLeft = "2%"
@@ -76,8 +81,6 @@ export default function buttonFactory() {
         //evenement appareils
         dropBtnUst.addEventListener("click", () => {
             const result = filterRecipesByTagsAndInputSearch()
-            hideDropDownComponents(dropBtnIng, dropDownButtonA)
-            hideDropDownComponents(dropBtnApp, dropDownButtonB)
             showDropDownComponents(getUniqueUstensils(result), dropBtnUst, ustensilGroupeTag, dropDownButtonC)
             dropDownApp.style.marginRight = "1%"
             dropBtnUst.style.marginLeft = "5%"
@@ -94,7 +97,7 @@ export default function buttonFactory() {
     }
 
 
-    return { getButtonDom }
+    return { getDropDownDom }
 
 }
 
