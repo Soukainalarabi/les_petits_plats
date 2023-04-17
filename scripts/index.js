@@ -1,6 +1,6 @@
 import cardFactory from "./factories/recipeCard.js"
 import { findAllRecipes, filterRecipesByTagsAndInputSearch } from "./service/recipe-service.js"
-import { showCardsRecipes } from "./factories/utilsDropDown.js"
+import showCardsRecipes  from "./factories/cardsUtils.js"
 import dropDownFactory from "./factories/dropDown.js"
 let inputSearch = document.getElementById("contenu-search")
 let cards = document.querySelector(".cards")

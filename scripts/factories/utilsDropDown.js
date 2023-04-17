@@ -1,57 +1,43 @@
 import { filterRecipesByTagsAndInputSearch } from "../service/recipe-service.js"
-export function createComponentElements(components, dropBtnComponent, componentGroupeTag, dropDownContent) {
+import showCardsRecipes from "./cardsUtils.js"
+import tagFactory from "./tagFactory.js"
+export function createComponentElements(components, dropBtnComponent, type, dropDownContent) {
     dropDownContent.innerHTML = ""
     components.forEach(component => {
         let componentElement = document.createElement("a")
         dropDownContent.appendChild(componentElement)
         componentElement.textContent = component
         componentElement.addEventListener("click", () => {
-            componentGroupeTag.getElementsByTagName("h1")[0].textContent = component
+            let tagDom = tagFactory(type, component).getTagDom()
+            let groupsTag = document.querySelector(".groups-tag")
+            groupsTag.appendChild(tagDom)
             dropBtnComponent.getElementsByTagName("h2")[0].style.display = "block"
-            componentGroupeTag.style.display = "flex"
             dropBtnComponent.getElementsByTagName("input")[0].style.display = 'none'
             dropBtnComponent.style.width = "170px"
             dropDownContent.style.display = "none"
             dropDownContent.style.width = "170px"
             dropDownContent.style.height = "60px"
             dropBtnComponent.getElementsByTagName("img")[0].style.transform = "rotate(0deg)"
-            showCardsRecipes(filterRecipesByTagsAndInputSearch()
-            )
+            showCardsRecipes(filterRecipesByTagsAndInputSearch())
+
+
         })
     })
 }
-export let showCardsRecipes = (recipeListe) => {
-    let cardElms = document.querySelectorAll(".card")
-    let cards = document.querySelector(".cards")
-    let msgErreur = document.getElementById("message-erreur")
-    cardElms.forEach(card => {
-        card.style.display = "none"
-        cards.style.display = "block"
-        msgErreur.style.display = "block"
-    })
-    recipeListe.forEach(res => {
-        document.getElementById(`recipe-${res.id}`).style.display = "block"
-        msgErreur.style.display = "none"
-        cards.style.display = "grid"
-    })
-}
-export function componentGroupeTag(componentGroupeTag) {
-    componentGroupeTag.style.display = componentGroupeTag.getElementsByTagName("h1")[0].textContent ? "flex" : "none"
-}
-export function searchInput(inputComponent, components, dropDownContent, dropBtnComponent, componentGroupeTag) {
+export function searchInput(inputComponent, components, dropDownContent, dropBtnComponent, type) {
     if (!inputComponent.value || inputComponent.value.length < 3) {
         dropDownContent.innerHTML = ""
-        createComponentElements(components, dropBtnComponent, componentGroupeTag, dropDownContent)
+        createComponentElements(components, dropBtnComponent, type, dropDownContent)
         return
     }
     let filtredComponents = components.filter(component =>
         component.toUpperCase().includes(inputComponent.value.toUpperCase().trim()))
     dropDownContent.innerHTML = ""
-    createComponentElements(filtredComponents, dropBtnComponent, componentGroupeTag, dropDownContent)
+    createComponentElements(filtredComponents, dropBtnComponent, type, dropDownContent)
 }
-export function showDropDownComponents(components, dropBtnComponent, componentGroupeTag, dropDownContent) {
+export function showDropDownComponents(components, dropBtnComponent, type, dropDownContent) {
     dropDownContent.innerHTML = ""
-    createComponentElements(components, dropBtnComponent, componentGroupeTag, dropDownContent)
+    createComponentElements(components, dropBtnComponent, type, dropDownContent)
     dropBtnComponent.getElementsByTagName("h2")[0].style.display = "none"
     dropBtnComponent.getElementsByTagName("img")[0].style.transform = "rotate(180deg)"
     dropBtnComponent.getElementsByTagName("input")[0].style.display = 'block'
@@ -106,32 +92,3 @@ export function createDropDownDom() {
 
 </div>`
 }
-// export default { createComponentElements, searchInput, showDropDownComponents, hideDropDownComponents, createDropDownDom, componentGroupeTag, showCardsRecipes }
-// export function createComponentElements(components, dropBtnComponent, componentGroupeTag, dropDownContent,iconCloseTagComponent,componentElementTag) {
-//     dropDownContent.innerHTML = ""
-//     components.forEach(component => {
-//         let componentElement = document.createElement("a")
-//         dropDownContent.appendChild(componentElement)
-//         componentElement.textContent = component
-//         componentElement.addEventListener("click", () => {
-//             let componentElementTag = document.createElement("h1")
-//             componentGroupeTag.appendChild(componentElementTag)
-//             let iconCloseTagComponent=document.createElement("img")
-//             iconCloseTagComponent.setAttribute("class","closeTagComponent")
-//             iconCloseTagComponent.setAttribute("src","assets/close.png")
-//             iconCloseTagComponent.setAttribute("aria-label","icon pour fermer le menu")
-//             componentGroupeTag.appendChild(iconCloseTag)
-//             componentElementTag.textContent = component
-//             dropBtnComponent.getElementsByTagName("h2")[0].style.display = "block"
-//             componentGroupeTag.style.display = "flex"
-//             dropBtnComponent.getElementsByTagName("input")[0].style.display = 'none'
-//             dropBtnComponent.style.width = "170px"
-//             dropDownContent.style.display = "none"
-//             dropDownContent.style.width = "170px"
-//             dropDownContent.style.height = "60px"
-//             dropBtnComponent.getElementsByTagName("img")[0].style.transform = "rotate(0deg)"
-//             showCardsRecipes(filterRecipesByTagsAndInputSearch()
-//             )
-//         })
-//     })
-// }

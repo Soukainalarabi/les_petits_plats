@@ -1,13 +1,7 @@
-import { searchInput, showDropDownComponents, hideDropDownComponents, createDropDownDom, componentGroupeTag, showCardsRecipes } from "./utilsDropDown.js"
+import { searchInput, showDropDownComponents, hideDropDownComponents, createDropDownDom } from "./utilsDropDown.js"
 import { getUniqueIngredients, getUniqueAppareils, getUniqueUstensils, filterRecipesByTagsAndInputSearch } from "../service/recipe-service.js"
 export default function dropDownFactory() {
     createDropDownDom()
-    let ingredientGroupeTag = document.querySelector(".ingredient-groupe-tag")
-    let appareilGroupeTag = document.querySelector(".appareil-groupe-tag")
-    let ustensilGroupeTag = document.querySelector(".ustensil-groupe-tag")
-    let closeTagIng = document.querySelector(".closeTagIngredient")
-    let closeTagApp = document.querySelector(".closeTagAppareil")
-    let closeTagUst = document.querySelector(".closeTagUstensil")
     let dropDownButtonA = document.querySelector(".dropdown-contentA ")
     let dropBtnIng = document.querySelector(".dropbtn-ingredients")
     let dropDownButtonB = document.querySelector(".dropdown-contentB ")
@@ -29,59 +23,38 @@ export default function dropDownFactory() {
         if (!event.target.matches('.click-ustensils')) {
             hideDropDownComponents(dropBtnUst, dropDownButtonC)
         }
-
     }
     inputIngredient.innerHTML = ""
     inputAppareil.innerHTML = ""
-    componentGroupeTag(ingredientGroupeTag)
-    componentGroupeTag(appareilGroupeTag)
-    componentGroupeTag(ustensilGroupeTag)
+   
     let getDropDownDom = () => {
-        closeTagIng.addEventListener("click", () => {
-            ingredientGroupeTag.style.display = "none"
-            ingredientGroupeTag.getElementsByTagName("h1")[0].textContent = ""
-            showCardsRecipes(filterRecipesByTagsAndInputSearch())
-        })
-        closeTagApp.addEventListener("click", () => {
-            appareilGroupeTag.style.display = "none"
-            appareilGroupeTag.getElementsByTagName("h1")[0].textContent = ""
-            showCardsRecipes(filterRecipesByTagsAndInputSearch()
-            )
-        })
-        closeTagUst.addEventListener("click", () => {
-            ustensilGroupeTag.style.display = "none"
-            ustensilGroupeTag.getElementsByTagName("h1")[0].textContent = ""
-            showCardsRecipes(filterRecipesByTagsAndInputSearch()
-            )
-        })
         dropBtnIng.addEventListener("click", () => {
-
             const result = filterRecipesByTagsAndInputSearch()
-            showDropDownComponents(getUniqueIngredients(result), dropBtnIng, ingredientGroupeTag, dropDownButtonA)
+            showDropDownComponents(getUniqueIngredients(result), dropBtnIng, "ingredient", dropDownButtonA)
         })
         inputIngredient.addEventListener("keyup", () => {
             const result = filterRecipesByTagsAndInputSearch()
-            searchInput(inputIngredient, getUniqueIngredients(result), dropDownButtonA, dropBtnIng, ingredientGroupeTag)
+            searchInput(inputIngredient, getUniqueIngredients(result), dropDownButtonA, dropBtnIng, "ingredient")
             dropDownButtonA.style.height = "auto"
         })
         //evenement appareils
         dropBtnApp.addEventListener("click", () => {
             const result = filterRecipesByTagsAndInputSearch()
 
-            showDropDownComponents(getUniqueAppareils(result), dropBtnApp, appareilGroupeTag, dropDownButtonB)
+            showDropDownComponents(getUniqueAppareils(result), dropBtnApp, "appareil", dropDownButtonB)
             dropDownIng.style.marginRight = "1%"
             dropBtnApp.style.marginLeft = "2%"
             dropDownButtonB.style.marginLeft = "2%"
         })
         inputAppareil.addEventListener("keyup", () => {
             const result = filterRecipesByTagsAndInputSearch()
-            searchInput(inputAppareil, getUniqueAppareils(result), dropDownButtonB, dropBtnApp, appareilGroupeTag)
+            searchInput(inputAppareil, getUniqueAppareils(result), dropDownButtonB, dropBtnApp, "appareil")
             dropDownButtonB.style.height = "auto"
         })
         //evenement appareils
         dropBtnUst.addEventListener("click", () => {
             const result = filterRecipesByTagsAndInputSearch()
-            showDropDownComponents(getUniqueUstensils(result), dropBtnUst, ustensilGroupeTag, dropDownButtonC)
+            showDropDownComponents(getUniqueUstensils(result), dropBtnUst, "ustensil", dropDownButtonC)
             dropDownApp.style.marginRight = "1%"
             dropBtnUst.style.marginLeft = "5%"
             dropDownButtonC.style.marginLeft = "5%"
@@ -90,7 +63,7 @@ export default function dropDownFactory() {
         })
         inputUstensil.addEventListener("keyup", () => {
             const result = filterRecipesByTagsAndInputSearch()
-            searchInput(inputUstensil, getUniqueUstensils(result), dropDownButtonC, dropBtnUst, ustensilGroupeTag)
+            searchInput(inputUstensil, getUniqueUstensils(result), dropDownButtonC, dropBtnUst, "ustensil")
             dropDownButtonC.style.height = "auto"
 
         })

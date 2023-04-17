@@ -12,6 +12,7 @@
 .groups-tag {
     display: flex !important;
     align-items: flex-end;
+    flex-wrap: wrap;
     margin-top: 1%;
     /* display: none; */
     width: auto;
@@ -22,6 +23,7 @@
     display: flex;
     justify-content: flex-start;
 }
+
 
 .ingredient-groupe-tag,
 .appareil-groupe-tag,
@@ -35,12 +37,15 @@
     cursor: pointer;
     height: 37px;
     border-radius: 5px;
-}
-
-.appareil-groupe-tag,
-.ustensil-groupe-tag {
     margin-left: 1%;
 }
+.ingredient-groupe-tag:first-child {
+    margin-left: 0px;  }
+.appareil-groupe-tag:first-child {
+    margin-left: 0px;  }
+.ustensil-groupe-tag:first-child {
+        margin-left: 0px;  };
+
 
 /* Style The Dropdown Button */
 .dropbtn-ustensils {
