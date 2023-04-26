@@ -6,6 +6,7 @@ export let filterRecipesByInputSearch = () => {
             recipe.name.toUpperCase().includes(inputSearch.value.toUpperCase().trim()) ||
             recipe.description.toUpperCase().includes(inputSearch.value.toUpperCase().trim()) ||
             recipe.ingredients.some(ingredient => ingredient.ingredient.toUpperCase().includes(inputSearch.value.toUpperCase().trim()))
+            
         );
     }
     return recipes
@@ -26,7 +27,6 @@ export let filterRecipesByTagValue = (recipesParams) => {
     const ingredientValue = getTagIngredientsValue()
     const appareilValue = getTagAppareilsValue()
     const ustensilValue = getTagUstensilsValue()
-    console.log(getTagIngredientsValue());
     return recipesParams.filter(recipe =>
         (!ingredientValue || ingredientValue.every(ing => recipe.ingredients.some(ingredient => ingredient.ingredient.toUpperCase().includes(ing.toUpperCase().trim())))) &&
         (!appareilValue || appareilValue.every(app => recipe.appliance.toUpperCase().trim() == app.toUpperCase().trim())) &&

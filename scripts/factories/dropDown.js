@@ -1,5 +1,5 @@
-import { searchInput, showDropDownComponents, hideDropDownComponents, createDropDownDom } from "./utilsDropDown.js"
-import { getUniqueIngredients, getUniqueAppareils, getUniqueUstensils, filterRecipesByTagsAndInputSearch } from "../service/recipe-service.js"
+import { searchInput, showDropDownComponents, hideDropDownComponents, createDropDownDom } from "./utilsDropDown-naive.js"
+import { getUniqueIngredients, getUniqueAppareils, getUniqueUstensils, filterRecipesByTagsAndInputSearch } from "../service/recipe-service-naive.js"
 export default function dropDownFactory() {
     createDropDownDom()
     let dropDownButtonA = document.querySelector(".dropdown-contentA ")
@@ -26,7 +26,7 @@ export default function dropDownFactory() {
     }
     inputIngredient.innerHTML = ""
     inputAppareil.innerHTML = ""
-   
+
     let getDropDownDom = () => {
         dropBtnIng.addEventListener("click", () => {
             const result = filterRecipesByTagsAndInputSearch()
@@ -40,11 +40,10 @@ export default function dropDownFactory() {
         //evenement appareils
         dropBtnApp.addEventListener("click", () => {
             const result = filterRecipesByTagsAndInputSearch()
-
             showDropDownComponents(getUniqueAppareils(result), dropBtnApp, "appareil", dropDownButtonB)
             dropDownIng.style.marginRight = "1%"
-            dropBtnApp.style.marginLeft = "2%"
-            dropDownButtonB.style.marginLeft = "2%"
+            dropBtnApp.style.marginLeft = "0.5%"
+            dropDownButtonB.style.marginLeft = "0.5%"
         })
         inputAppareil.addEventListener("keyup", () => {
             const result = filterRecipesByTagsAndInputSearch()
@@ -56,8 +55,8 @@ export default function dropDownFactory() {
             const result = filterRecipesByTagsAndInputSearch()
             showDropDownComponents(getUniqueUstensils(result), dropBtnUst, "ustensil", dropDownButtonC)
             dropDownApp.style.marginRight = "1%"
-            dropBtnUst.style.marginLeft = "5%"
-            dropDownButtonC.style.marginLeft = "5%"
+            dropBtnUst.style.marginLeft = "2%"
+            dropDownButtonC.style.marginLeft = "2%"
             dropDownButtonC.style.marginRight = "2%"
             dropBtnApp.style.marginLeft = "3%"
         })

@@ -3,7 +3,7 @@ import showCardsRecipes from "./cardsUtils.js"
 import tagFactory from "./tagFactory.js"
 export function createComponentElements(components, dropBtnComponent, type, dropDownContent) {
     dropDownContent.innerHTML = ""
-    components.forEach(component => {
+    for (const component of components) {
         let componentElement = document.createElement("a")
         dropDownContent.appendChild(componentElement)
         componentElement.textContent = component
@@ -22,7 +22,7 @@ export function createComponentElements(components, dropBtnComponent, type, drop
 
 
         })
-    })
+    }
 }
 export function searchInput(inputComponent, components, dropDownContent, dropBtnComponent, type) {
     if (!inputComponent.value) {
@@ -30,8 +30,15 @@ export function searchInput(inputComponent, components, dropDownContent, dropBtn
         createComponentElements(components, dropBtnComponent, type, dropDownContent)
         return
     }
-    let filtredComponents = components.filter(component =>
-        component.toUpperCase().includes(inputComponent.value.toUpperCase().trim()))
+    let filtredComponents = () => {
+        let arrayComponent = []
+        for (const component of components) {
+            if (component.toUpperCase().includes(inputComponent.value.toUpperCase().trim())) {
+                arrayComponent.push(component)
+            }
+        }
+        return arrayComponent
+    }
     dropDownContent.innerHTML = ""
     createComponentElements(filtredComponents, dropBtnComponent, type, dropDownContent)
 }
