@@ -1,4 +1,4 @@
-import { getSelectedAppareils, getSelectedIngredients, getSelectedUstensils, searchRecipes } from "../../service/recipe-application-naive.js"
+import { getSelectedAppareils, getSelectedIngredients, getSelectedUstensils, searchRecipes } from "../../service/recipe-service-naive.js"
 import showCardsRecipes from "../cards/cardsUtils-naive.js"
 export default function tagFactory(type, component) {
     let typeGroupTag = document.createElement("div")

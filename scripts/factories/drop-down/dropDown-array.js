@@ -1,5 +1,5 @@
 import { searchInput, showDropDownComponents, hideDropDownComponents, createDropDownDom } from "./utilsDropDown-array.js"
-import { filterUniqueAppareils, filterUniqueIngredients, filterUniqueUstensils, searchRecipes } from "../../service/recipe-application-array.js"
+import { filterUniqueAppareils, filterUniqueIngredients, filterUniqueUstensils, searchRecipes } from "../../service/recipe-service-array.js"
 export default function dropDownFactory() {
     createDropDownDom()
     let dropDownButtonA = document.querySelector(".dropdown-contentA ")

@@ -1,5 +1,5 @@
 import showCardsRecipes from "../cards/cardsUtils-array.js"
-import { getSelectedAppareils, getSelectedIngredients, getSelectedUstensils, searchRecipes } from "../../service/recipe-application-array.js"
+import { getSelectedAppareils, getSelectedIngredients, getSelectedUstensils, searchRecipes } from "../../service/recipe-service-array.js"
 // factory de création des tags de ingresient, appareil et ustensil
 export default function tagFactory(type, component) {
     let typeGroupTag = document.createElement("div")

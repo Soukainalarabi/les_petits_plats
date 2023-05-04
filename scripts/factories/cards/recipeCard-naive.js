@@ -44,7 +44,7 @@ export default function cardFactory(recipe) {
             let quantityInit = ingredient.quantity ? ":" + ingredient.quantity : ""
             let unitInit = ingredient.unit ? ingredient.unit : ""
             ingredientsDetails.innerHTML = `<strong>${ingredient.ingredient}</strong> ${quantityInit} ${unitInit}`
-        };
+        }
         return (cardRecipes)
 
     }

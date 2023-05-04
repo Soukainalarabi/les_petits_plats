@@ -1,5 +1,5 @@
 import { searchInput, showDropDownComponents, hideDropDownComponents, createDropDownDom } from "./utilsDropDown-naive.js"
-import { filterUniqueAppareils, filterUniqueIngredients, filterUniqueUstensils, searchRecipes } from "../../service/recipe-application-naive.js"
+import { filterUniqueAppareils, filterUniqueIngredients, filterUniqueUstensils, searchRecipes } from "../../service/recipe-service-naive.js"
 export default function dropDownFactory() {
     createDropDownDom()
     let dropDownButtonA = document.querySelector(".dropdown-contentA ")

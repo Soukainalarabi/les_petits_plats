@@ -9,7 +9,6 @@ function someIngredient(ingredients, searchString) {
     }
     return false
 }
-
 //cette fonction vérifie si la liste des ustentils contient le mot saisi
 function someUstentils(ustensils, searchString) {
     for (const ust of ustensils) {
@@ -19,6 +18,15 @@ function someUstentils(ustensils, searchString) {
     }
     return false
 }
+//chercher les recipes selon les ingredients,appareils et ustensils selectionnée et les mots saisi par l'usitilsateur dans l'inputGlobal
+export let searchRecipes = () => {
+    const selectedIngredients = getSelectedIngredients()
+    const selectedAppareils = getSelectedAppareils()
+    const selectedUstensils = getSelectedUstensils()
+    let inputSearch = document.getElementById("contenu-search").value
+    return filterRecipesByTagsAndInputSearch(inputSearch, selectedIngredients, selectedAppareils, selectedUstensils)
+}
+
 
 //cette fonction filtre les recipes par le mot saisi dans inputSearch
 export let filterRecipesByInputSearch = (inputSearch) => {
@@ -40,16 +48,6 @@ export let filterRecipesByTagsAndInputSearch = (inputSearchValue, selectedIngred
     return filterRecipesByTagValue(filterRecipesByInputSearch(inputSearchValue)
         , selectedIngredients, selectedAppareils, selectedUstensils)
 }
-function getTagValue(selector) {
-    let results = []
-    for (const element of [...document.querySelectorAll(selector)]) {
-        if (element.textContent) {
-            results.push(element.textContent)
-        }
-    }
-    return results;
-}
-
 //cette fonction filtre les recipes par les ingredients , appareils et ustensils selectionnées.
 export let filterRecipesByTagValue = (recipesParams, selectedIngredients, selectedAppareils, selectedUstensils) => {
     let result = []
@@ -88,7 +86,7 @@ function everyUstentils(ustentils, recipe) {
 
 function everyAppareils(appareils, appliance) {
     for (const app of appareils) {
-        if (appliance?.toUpperCase().trim() != app?.toUpperCase().trim()) {
+        if (appliance.toUpperCase().trim() != app.toUpperCase().trim()) {
             return false
         }
     }
@@ -97,7 +95,6 @@ function everyAppareils(appareils, appliance) {
 
 
 
-export let findAllRecipes = () => recipes
 //transformer la liste des recipes en liste unique des ingredients
 export function getUniqueIngredients(recipeListe) {
     let result = [];
@@ -135,7 +132,7 @@ export function getUniqueAppareils(recipeListe) {
 //cette fonction vérifie si l'element contien dans la liste
 function includesElement(array, searchInclude) {
     for (const element of array) {
-        if (element?.toUpperCase() == searchInclude?.toUpperCase()) {
+        if (element.toUpperCase() == searchInclude.toUpperCase()) {
             return true
         }
     }
@@ -143,4 +140,38 @@ function includesElement(array, searchInclude) {
 }
 
 
-export default { getUniqueIngredients, getUniqueAppareils, getUniqueUstensils, filterRecipesByTagsAndInputSearch, filterRecipesByInputSearch, findAllRecipes }
+//Recuperer les tags selectionner selon le selector .ingredient-tag,.appareil-tag
+//.ustensil-tag
+function getSelectedTagsBySelector(selector) {
+    let results = []
+    for (const element of [...document.querySelectorAll(selector)]) {
+        if (element.textContent) {
+            results.push(element.textContent)
+        }
+    }
+    return results;
+}
+export function getSelectedIngredients() {
+    return getSelectedTagsBySelector(".ingredient-tag")
+}
+export function getSelectedAppareils() {
+    return getSelectedTagsBySelector(".appareil-tag")
+}
+export function getSelectedUstensils() {
+    return getSelectedTagsBySelector(".ustensil-tag")
+}
+//filtrer la liste unique des ingredients
+export function filterUniqueIngredients(recipeListe) {
+    return getUniqueIngredients(recipeListe);
+}
+//filtrer la liste unique des ustensils
+export function filterUniqueUstensils(recipeListe) {
+    return getUniqueUstensils(recipeListe);
+}
+//filtrer la liste unique des appareils
+export function filterUniqueAppareils(recipeListe) {
+    return getUniqueAppareils(recipeListe)
+}
+export let findAll = ()  => recipes
+
+export default { searchRecipes, findAll, getSelectedIngredients, getSelectedAppareils, getSelectedUstensils, filterUniqueIngredients, filterUniqueUstensils, filterUniqueAppareils }

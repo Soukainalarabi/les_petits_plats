@@ -1,4 +1,4 @@
-import { searchRecipes } from "../../service/recipe-application-naive.js";
+import { searchRecipes } from "../../service/recipe-service-naive.js";
 import showCardsRecipes from "../cards/cardsUtils-naive.js";
 import tagFactory from "../tag/tagFactory-naive.js";
 

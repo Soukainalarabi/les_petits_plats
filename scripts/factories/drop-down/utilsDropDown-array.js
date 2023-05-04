@@ -1,4 +1,4 @@
-import { searchRecipes } from "../../service/recipe-application-array.js";
+import { searchRecipes } from "../../service/recipe-service-array.js";
 import showCardsRecipes from "../cards/cardsUtils-array.js";
 import tagFactory from "../tag/tagFactory-array.js";
 //la création des composants des dropDowns
@@ -9,13 +9,14 @@ export function createComponentElements(components, dropBtnComponent, type, drop
         dropDownContent.appendChild(componentElement)
         componentElement.textContent = component
         //Lorsqu'on clique sur un element on l'ajoute dans les tags selectionnée et on recherche les recettes suite à la nouvelle liste des tags
+        dropBtnComponent.classList.add("hideDropDown-button")
         componentElement.addEventListener("click", () => {
             let tagDom = tagFactory(type, component).getTagDom()
             let groupsTag = document.querySelector(".groups-tag")
             groupsTag.appendChild(tagDom)
             dropBtnComponent.getElementsByTagName("h2")[0].style.display = "block"
             dropBtnComponent.getElementsByTagName("input")[0].style.display = 'none'
-            dropBtnComponent.style.width = "170px"
+            // dropBtnComponent.style.width = "170px"
             dropDownContent.style.display = "none"
             dropDownContent.style.width = "170px"
             dropBtnComponent.getElementsByTagName("img")[0].style.transform = "rotate(0deg)"
@@ -43,7 +44,9 @@ export function showDropDownComponents(components, dropBtnComponent, type, dropD
     dropBtnComponent.getElementsByTagName("input")[0].style.display = 'block'
     dropDownContent.style.display = "grid"
     dropDownContent.style.gridTemplateColumns = "repeat(3, 1fr)";
-    dropBtnComponent.style.width = "667px"
+    dropBtnComponent.classList.add("dropbtn-responsive")
+    dropBtnComponent.classList.remove("hideDropDown-button")
+    // dropBtnComponent.style.width = "667px"
     dropDownContent.style.width = "667px"
     dropDownContent.style.maxHeight = "397px"
     dropDownContent.style.overflow = "scroll"
@@ -51,7 +54,9 @@ export function showDropDownComponents(components, dropBtnComponent, type, dropD
 }
 // Retourner les dropDowns a leur etat initial avant le clique 
 export function hideDropDownComponents(dropBtnComponent, dropDownContent) {
-    dropBtnComponent.style.width = "170px"
+    dropBtnComponent.classList.remove("dropbtn-responsive")
+    dropBtnComponent.classList.add("hideDropDown-button")
+    // dropBtnComponent.style.width = "170px"
     dropDownContent.style.display = "none"
     dropDownContent.style.width = "170px"
     dropBtnComponent.getElementsByTagName("input")[0].style.display = 'none'
@@ -63,7 +68,7 @@ export function createDropDownDom() {
     let ingredientsDom = document.querySelector(".dropdown-ingredients")
     let appareilsDom = document.querySelector(".dropdown-appareils")
     let ustensilsDom = document.querySelector(".dropdown-ustensils")
-    ingredientsDom.innerHTML = `<button class="dropbtn-ingredients click-ingredients">
+    ingredientsDom.innerHTML = `<button class="dropbtn-ingredients click-ingredients hideDropDown-button">
     <h2 class="title click-ingredients">Ingredients</h2>
     <input class="ingredients-input click-ingredients" type="search" name="" id="search-ingredient"
         placeholder="Rechercher un ingredient">
@@ -72,7 +77,7 @@ export function createDropDownDom() {
 </button>
 <div class="dropdown-contentA">
 </div>`
-    appareilsDom.innerHTML = ` <button class="dropbtn-appareils click-appareils">
+    appareilsDom.innerHTML = ` <button class="dropbtn-appareils click-appareils hideDropDown-button">
     <h2 class="title click-appareils">Appareils</h2>
     <input class="appareils-input click-appareils" type="search" name="" id="search-appareil"
         placeholder="Rechercher un appareil">
@@ -82,7 +87,7 @@ export function createDropDownDom() {
 </button>
 <div class="dropdown-contentB">
 </div>`
-    ustensilsDom.innerHTML = `<button class="dropbtn-ustensils click-ustensils">
+    ustensilsDom.innerHTML = `<button class="dropbtn-ustensils click-ustensils hideDropDown-button">
     <h2 class="title click-ustensils"> Ustensils</h2>
     <input class="ustensils-input click-ustensils" type="search" name="" id="search-ustensil"
         placeholder="Rechercher un appareil">
