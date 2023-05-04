@@ -1,5 +1,5 @@
-import { searchInput, showDropDownComponents, hideDropDownComponents, createDropDownDom } from "./utilsDropDown-naive.js"
-import { getUniqueIngredients, getUniqueAppareils, getUniqueUstensils, filterRecipesByTagsAndInputSearch } from "../service/recipe-service-naive.js"
+import { searchInput, showDropDownComponents, hideDropDownComponents, createDropDownDom } from "./utilsDropDown-array.js"
+import { filterUniqueAppareils, filterUniqueIngredients, filterUniqueUstensils, searchRecipes } from "../../service/recipe-application-array.js"
 export default function dropDownFactory() {
     createDropDownDom()
     let dropDownButtonA = document.querySelector(".dropdown-contentA ")
@@ -13,47 +13,45 @@ export default function dropDownFactory() {
     let inputUstensil = document.querySelector(".ustensils-input")
     let dropDownIng = document.querySelector(".dropdown-ingredients")
     let dropDownApp = document.querySelector(".dropdown-appareils")
+    //fermer le dropDown si on clique dehors et initialiser les inputs 
     window.onclick = function (event) {
         if (!event.target.matches('.click-ingredients')) {
+            inputIngredient.value = ""
             hideDropDownComponents(dropBtnIng, dropDownButtonA)
         }
         if (!event.target.matches('.click-appareils')) {
+            inputAppareil.value = ""
             hideDropDownComponents(dropBtnApp, dropDownButtonB)
         }
         if (!event.target.matches('.click-ustensils')) {
+            inputUstensil.value = ""
             hideDropDownComponents(dropBtnUst, dropDownButtonC)
         }
     }
-    inputIngredient.innerHTML = ""
-    inputAppareil.innerHTML = ""
-
     let getDropDownDom = () => {
         dropBtnIng.addEventListener("click", () => {
-            const result = filterRecipesByTagsAndInputSearch()
-            showDropDownComponents(getUniqueIngredients(result), dropBtnIng, "ingredient", dropDownButtonA)
+            const result = searchRecipes()
+            showDropDownComponents(filterUniqueIngredients(result), dropBtnIng, "ingredient", dropDownButtonA)
         })
         inputIngredient.addEventListener("keyup", () => {
-            const result = filterRecipesByTagsAndInputSearch()
-            searchInput(inputIngredient, getUniqueIngredients(result), dropDownButtonA, dropBtnIng, "ingredient")
-            dropDownButtonA.style.height = "auto"
+            const result = searchRecipes()
+            searchInput(inputIngredient, filterUniqueIngredients(result), dropDownButtonA, dropBtnIng, "ingredient")
         })
-        //evenement appareils
         dropBtnApp.addEventListener("click", () => {
-            const result = filterRecipesByTagsAndInputSearch()
-            showDropDownComponents(getUniqueAppareils(result), dropBtnApp, "appareil", dropDownButtonB)
+            const result = searchRecipes()
+            showDropDownComponents(filterUniqueAppareils(result), dropBtnApp, "appareil", dropDownButtonB)
             dropDownIng.style.marginRight = "1%"
             dropBtnApp.style.marginLeft = "0.5%"
             dropDownButtonB.style.marginLeft = "0.5%"
         })
         inputAppareil.addEventListener("keyup", () => {
-            const result = filterRecipesByTagsAndInputSearch()
-            searchInput(inputAppareil, getUniqueAppareils(result), dropDownButtonB, dropBtnApp, "appareil")
-            dropDownButtonB.style.height = "auto"
+            const result = searchRecipes()
+            searchInput(inputAppareil, filterUniqueAppareils(result), dropDownButtonB, dropBtnApp, "appareil")
         })
         //evenement appareils
         dropBtnUst.addEventListener("click", () => {
-            const result = filterRecipesByTagsAndInputSearch()
-            showDropDownComponents(getUniqueUstensils(result), dropBtnUst, "ustensil", dropDownButtonC)
+            const result = searchRecipes()
+            showDropDownComponents(filterUniqueUstensils(result), dropBtnUst, "ustensil", dropDownButtonC)
             dropDownApp.style.marginRight = "1%"
             dropBtnUst.style.marginLeft = "2%"
             dropDownButtonC.style.marginLeft = "2%"
@@ -61,9 +59,8 @@ export default function dropDownFactory() {
             dropBtnApp.style.marginLeft = "3%"
         })
         inputUstensil.addEventListener("keyup", () => {
-            const result = filterRecipesByTagsAndInputSearch()
-            searchInput(inputUstensil, getUniqueUstensils(result), dropDownButtonC, dropBtnUst, "ustensil")
-            dropDownButtonC.style.height = "auto"
+            const result = searchRecipes()
+            searchInput(inputUstensil, filterUniqueUstensils(result), dropDownButtonC, dropBtnUst, "ustensil")
 
         })
     }

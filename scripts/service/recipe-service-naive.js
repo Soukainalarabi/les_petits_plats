@@ -1,7 +1,8 @@
 import recipes from "../data/recipes.js"
+
+//cette fonction vérifie si la liste des ingredients contient le mot saisi
 function someIngredient(ingredients, searchString) {
     for (const ingredient of ingredients) {
-        console.log('herre');
         if (ingredient.ingredient.toUpperCase().includes(searchString.toUpperCase().trim())) {
             return true
         }
@@ -9,6 +10,7 @@ function someIngredient(ingredients, searchString) {
     return false
 }
 
+//cette fonction vérifie si la liste des ustentils contient le mot saisi
 function someUstentils(ustensils, searchString) {
     for (const ust of ustensils) {
         if (ust.toUpperCase().includes(searchString.toUpperCase().trim())) {
@@ -17,15 +19,15 @@ function someUstentils(ustensils, searchString) {
     }
     return false
 }
-export let filterRecipesByInputSearch = () => {
-    let inputSearch = document.getElementById("contenu-search")
-    let resultFilter = []
-    if (inputSearch.value.trim() && inputSearch.value.length >= 3) {
-        for (const recipe of recipes) {
-            console.log('recipe');
 
-            if (recipe.name.toUpperCase().includes(inputSearch.value.toUpperCase().trim()) ||
-                recipe.description.toUpperCase().includes(inputSearch.value.toUpperCase().trim()) || someIngredient(recipe.ingredients, inputSearch.value)) {
+//cette fonction filtre les recipes par le mot saisi dans inputSearch
+export let filterRecipesByInputSearch = (inputSearch) => {
+    let resultFilter = []
+    if (inputSearch.trim() && inputSearch.length >= 3) {
+        for (const recipe of recipes) {
+
+            if (recipe.name.toUpperCase().includes(inputSearch.toUpperCase().trim()) ||
+                recipe.description.toUpperCase().includes(inputSearch.toUpperCase().trim()) || someIngredient(recipe.ingredients, inputSearch)) {
                 resultFilter.push(recipe)
             }
         }
@@ -33,8 +35,10 @@ export let filterRecipesByInputSearch = () => {
     }
     return recipes
 }
-export let filterRecipesByTagsAndInputSearch = () => {
-    return filterRecipesByTagValue(filterRecipesByInputSearch())
+//chercher les recipes selon les ingredients,appareils et ustensils selectionnées et les mots saisi par l'usitilsatuer
+export let filterRecipesByTagsAndInputSearch = (inputSearchValue, selectedIngredients, selectedAppareils, selectedUstensils) => {
+    return filterRecipesByTagValue(filterRecipesByInputSearch(inputSearchValue)
+        , selectedIngredients, selectedAppareils, selectedUstensils)
 }
 function getTagValue(selector) {
     let results = []
@@ -45,32 +49,24 @@ function getTagValue(selector) {
     }
     return results;
 }
-export function getTagIngredientsValue() {
-    return getTagValue(".ingredient-tag")
-}
-export function getTagAppareilsValue() {
-    return getTagValue(".appareil-tag")
-}
-export function getTagUstensilsValue() {
-    return getTagValue(".ustensil-tag")
-}
 
-export let filterRecipesByTagValue = (recipesParams) => {
-    const ingredientsValue = getTagIngredientsValue()
-    const appareilsValue = getTagAppareilsValue()
-    const ustensilsValue = getTagUstensilsValue()
+//cette fonction filtre les recipes par les ingredients , appareils et ustensils selectionnées.
+export let filterRecipesByTagValue = (recipesParams, selectedIngredients, selectedAppareils, selectedUstensils) => {
     let result = []
     for (const recipe of recipesParams) {
-        if ((!ingredientsValue || everyIngredients(ingredientsValue, recipe)) &&
-            (!appareilsValue || everyAppareils(appareilsValue, recipe.appliance)) &&
-            (!ustensilsValue || everyUstentils(ustensilsValue, recipe))) {
+        // on ajoute que les recipes qui contiennent les ingredients, appareils et ustensils selectionnés.
+        if ((!selectedIngredients || everyIngredients(selectedIngredients, recipe)) &&
+            (!selectedAppareils || everyAppareils(selectedAppareils, recipe.appliance)) &&
+            (!selectedUstensils || everyUstentils(selectedUstensils, recipe))) {
             result.push(recipe)
         }
     }
     return result
-};
-function everyIngredients(ingredients, recipe) {
-    for (const ing of ingredients) {
+}
+
+//cette fonction verifie que le recipe contient tous les ingredients selectionnés
+function everyIngredients(selectedIngredients, recipe) {
+    for (const ing of selectedIngredients) {
         if (!someIngredient(recipe.ingredients, ing)) {
             return false
         }
@@ -78,6 +74,7 @@ function everyIngredients(ingredients, recipe) {
     return true
 }
 
+//cette fonction vérifie que le recipe  contient tous les ustentils selectionnés
 function everyUstentils(ustentils, recipe) {
     for (const ust of ustentils) {
         if (!someUstentils(recipe.ustensils, ust)) {
@@ -86,6 +83,8 @@ function everyUstentils(ustentils, recipe) {
     }
     return true
 }
+
+//cette fonction vérifie que le recipe  contient tous les appareils selectionnés
 
 function everyAppareils(appareils, appliance) {
     for (const app of appareils) {
@@ -99,8 +98,7 @@ function everyAppareils(appareils, appliance) {
 
 
 export let findAllRecipes = () => recipes
-
-
+//transformer la liste des recipes en liste unique des ingredients
 export function getUniqueIngredients(recipeListe) {
     let result = [];
     for (const element of recipeListe) {
@@ -110,9 +108,9 @@ export function getUniqueIngredients(recipeListe) {
             }
         }
     }
-
     return result;
 }
+//transformer la liste des recipes en liste unique des ustensils
 export function getUniqueUstensils(recipeListe) {
     let result = [];
     for (const element of recipeListe) {
@@ -122,22 +120,19 @@ export function getUniqueUstensils(recipeListe) {
             }
         }
     }
-
     return result;
 }
+//transformer la liste des recipes en liste unique des appareils
 export function getUniqueAppareils(recipeListe) {
     let result = [];
     for (const recipe of recipeListe) {
         if (!includesElement(result, recipe.appliance)) {
             result.push(recipe.appliance);
         }
-
     }
-    console.log(result)
-
     return result;
-
 }
+//cette fonction vérifie si l'element contien dans la liste
 function includesElement(array, searchInclude) {
     for (const element of array) {
         if (element?.toUpperCase() == searchInclude?.toUpperCase()) {
@@ -148,4 +143,4 @@ function includesElement(array, searchInclude) {
 }
 
 
-export default { getUniqueIngredients, getUniqueAppareils, getUniqueUstensils, filterRecipesByTagsAndInputSearch, filterRecipesByInputSearch, findAllRecipes, getTagAppareilsValue, getTagIngredientsValue, getTagUstensilsValue }
+export default { getUniqueIngredients, getUniqueAppareils, getUniqueUstensils, filterRecipesByTagsAndInputSearch, filterRecipesByInputSearch, findAllRecipes }

@@ -1,12 +1,14 @@
-import { filterRecipesByTagsAndInputSearch } from "../service/recipe-service-naive.js"
-import showCardsRecipes from "./cardsUtils.js"
-import tagFactory from "./tagFactory.js"
+import { searchRecipes } from "../../service/recipe-application-array.js";
+import showCardsRecipes from "../cards/cardsUtils-array.js";
+import tagFactory from "../tag/tagFactory-array.js";
+//la création des composants des dropDowns
 export function createComponentElements(components, dropBtnComponent, type, dropDownContent) {
     dropDownContent.innerHTML = ""
-    for (const component of components) {
+    components.forEach(component => {
         let componentElement = document.createElement("a")
         dropDownContent.appendChild(componentElement)
         componentElement.textContent = component
+        //Lorsqu'on clique sur un element on l'ajoute dans les tags selectionnée et on recherche les recettes suite à la nouvelle liste des tags
         componentElement.addEventListener("click", () => {
             let tagDom = tagFactory(type, component).getTagDom()
             let groupsTag = document.querySelector(".groups-tag")
@@ -16,13 +18,10 @@ export function createComponentElements(components, dropBtnComponent, type, drop
             dropBtnComponent.style.width = "170px"
             dropDownContent.style.display = "none"
             dropDownContent.style.width = "170px"
-            dropDownContent.style.height = "60px"
             dropBtnComponent.getElementsByTagName("img")[0].style.transform = "rotate(0deg)"
-            showCardsRecipes(filterRecipesByTagsAndInputSearch())
-
-
+            showCardsRecipes(searchRecipes())
         })
-    }
+    })
 }
 export function searchInput(inputComponent, components, dropDownContent, dropBtnComponent, type) {
     if (!inputComponent.value) {
@@ -30,18 +29,12 @@ export function searchInput(inputComponent, components, dropDownContent, dropBtn
         createComponentElements(components, dropBtnComponent, type, dropDownContent)
         return
     }
-    let filtredComponents = () => {
-        let arrayComponent = []
-        for (const component of components) {
-            if (component.toUpperCase().includes(inputComponent.value.toUpperCase().trim())) {
-                arrayComponent.push(component)
-            }
-        }
-        return arrayComponent
-    }
+    let filtredComponents = components.filter(component =>
+        component.toUpperCase().includes(inputComponent.value.toUpperCase().trim()))
     dropDownContent.innerHTML = ""
     createComponentElements(filtredComponents, dropBtnComponent, type, dropDownContent)
 }
+///afficher la liste des ingredients , appareils et ustensils
 export function showDropDownComponents(components, dropBtnComponent, type, dropDownContent) {
     dropDownContent.innerHTML = ""
     createComponentElements(components, dropBtnComponent, type, dropDownContent)
@@ -52,19 +45,20 @@ export function showDropDownComponents(components, dropBtnComponent, type, dropD
     dropDownContent.style.gridTemplateColumns = "repeat(3, 1fr)";
     dropBtnComponent.style.width = "667px"
     dropDownContent.style.width = "667px"
-    dropDownContent.style.height = "397px"
+    dropDownContent.style.maxHeight = "397px"
     dropDownContent.style.overflow = "scroll"
     dropDownContent.style.marginTop = "-1%"
 }
+// Retourner les dropDowns a leur etat initial avant le clique 
 export function hideDropDownComponents(dropBtnComponent, dropDownContent) {
     dropBtnComponent.style.width = "170px"
     dropDownContent.style.display = "none"
     dropDownContent.style.width = "170px"
-    dropDownContent.style.height = "60px"
     dropBtnComponent.getElementsByTagName("input")[0].style.display = 'none'
     dropBtnComponent.getElementsByTagName("h2")[0].style.display = "block"
     dropBtnComponent.getElementsByTagName("img")[0].style.transform = "rotate(0deg)"
 }
+///La création des dropDowns
 export function createDropDownDom() {
     let ingredientsDom = document.querySelector(".dropdown-ingredients")
     let appareilsDom = document.querySelector(".dropdown-appareils")

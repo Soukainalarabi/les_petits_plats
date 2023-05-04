@@ -1,12 +1,18 @@
-import { filterRecipesByTagsAndInputSearch } from "../service/recipe-service-naive.js"
-import showCardsRecipes from "./cardsUtils.js"
-import tagFactory from "./tagFactory.js"
+import { searchRecipes } from "../../service/recipe-application-naive.js";
+import showCardsRecipes from "../cards/cardsUtils-naive.js";
+import tagFactory from "../tag/tagFactory-naive.js";
+
+/**
+ * 
+ * créer le menu des   composants dropDown 
+ */
 export function createComponentElements(components, dropBtnComponent, type, dropDownContent) {
     dropDownContent.innerHTML = ""
-    components.forEach(component => {
+    for (const component of components) {
         let componentElement = document.createElement("a")
         dropDownContent.appendChild(componentElement)
         componentElement.textContent = component
+        //Rechercher les recipes lorsqu'on choisi un composant dans le dropdown menu
         componentElement.addEventListener("click", () => {
             let tagDom = tagFactory(type, component).getTagDom()
             let groupsTag = document.querySelector(".groups-tag")
@@ -16,25 +22,41 @@ export function createComponentElements(components, dropBtnComponent, type, drop
             dropBtnComponent.style.width = "170px"
             dropDownContent.style.display = "none"
             dropDownContent.style.width = "170px"
-            dropDownContent.style.height = "60px"
             dropBtnComponent.getElementsByTagName("img")[0].style.transform = "rotate(0deg)"
-            showCardsRecipes(filterRecipesByTagsAndInputSearch())
+            //Rechercher les recipes  et l'afficher dans cards
+            showCardsRecipes(searchRecipes())
 
 
         })
-    })
+    }
 }
+/**
+ * 
+ * /**
+ * 
+ * filtrer les  composants de dropDown  selon les mots clé saisi dans le dropdwon componant
+ */
 export function searchInput(inputComponent, components, dropDownContent, dropBtnComponent, type) {
     if (!inputComponent.value) {
         dropDownContent.innerHTML = ""
         createComponentElements(components, dropBtnComponent, type, dropDownContent)
         return
     }
-    let filtredComponents = components.filter(component =>
-        component.toUpperCase().includes(inputComponent.value.toUpperCase().trim()))
+    let filtredComponents = []
+    for (const component of components) {
+        if (component.toUpperCase().includes(inputComponent.value.toUpperCase().trim())) {
+            filtredComponents.push(component)
+        }
+    }
     dropDownContent.innerHTML = ""
     createComponentElements(filtredComponents, dropBtnComponent, type, dropDownContent)
 }
+/**
+ * 
+ * /**
+ * 
+ * Créer le dropDown menu  que pour des composants des recipes affiché dans les cards 
+ */
 export function showDropDownComponents(components, dropBtnComponent, type, dropDownContent) {
     dropDownContent.innerHTML = ""
     createComponentElements(components, dropBtnComponent, type, dropDownContent)
@@ -45,7 +67,7 @@ export function showDropDownComponents(components, dropBtnComponent, type, dropD
     dropDownContent.style.gridTemplateColumns = "repeat(3, 1fr)";
     dropBtnComponent.style.width = "667px"
     dropDownContent.style.width = "667px"
-    dropDownContent.style.height = "397px"
+    dropDownContent.style.maxHeight = "397px"
     dropDownContent.style.overflow = "scroll"
     dropDownContent.style.marginTop = "-1%"
 }
@@ -53,7 +75,6 @@ export function hideDropDownComponents(dropBtnComponent, dropDownContent) {
     dropBtnComponent.style.width = "170px"
     dropDownContent.style.display = "none"
     dropDownContent.style.width = "170px"
-    dropDownContent.style.height = "60px"
     dropBtnComponent.getElementsByTagName("input")[0].style.display = 'none'
     dropBtnComponent.getElementsByTagName("h2")[0].style.display = "block"
     dropBtnComponent.getElementsByTagName("img")[0].style.transform = "rotate(0deg)"

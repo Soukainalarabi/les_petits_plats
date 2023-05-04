@@ -1,3 +1,4 @@
+//ce factory cree le card de recipe passé en paramètre
 export default function cardFactory(recipe) {
     let cardRecipes = document.createElement("div")
     let imgCard = document.createElement("div")
