@@ -13,6 +13,7 @@ export function createComponentElements(components, dropBtnComponent, type, drop
         dropDownContent.appendChild(componentElement)
         componentElement.textContent = component
         //Rechercher les recipes lorsqu'on choisi un composant dans le dropdown menu
+        dropBtnComponent.classList.add("hideDropDown-button")
         componentElement.addEventListener("click", () => {
             let tagDom = tagFactory(type, component).getTagDom()
             let groupsTag = document.querySelector(".groups-tag")
@@ -65,6 +66,8 @@ export function showDropDownComponents(components, dropBtnComponent, type, dropD
     dropBtnComponent.getElementsByTagName("input")[0].style.display = 'block'
     dropDownContent.style.display = "grid"
     dropDownContent.style.gridTemplateColumns = "repeat(3, 1fr)";
+    dropBtnComponent.classList.add("dropbtn-responsive")
+    dropBtnComponent.classList.remove("hideDropDown-button")
     dropBtnComponent.style.width = "667px"
     dropDownContent.style.width = "667px"
     dropDownContent.style.maxHeight = "397px"
@@ -72,6 +75,8 @@ export function showDropDownComponents(components, dropBtnComponent, type, dropD
     dropDownContent.style.marginTop = "-1%"
 }
 export function hideDropDownComponents(dropBtnComponent, dropDownContent) {
+    dropBtnComponent.classList.remove("dropbtn-responsive")
+    dropBtnComponent.classList.add("hideDropDown-button")
     dropBtnComponent.style.width = "170px"
     dropDownContent.style.display = "none"
     dropDownContent.style.width = "170px"
@@ -105,7 +110,7 @@ export function createDropDownDom() {
     ustensilsDom.innerHTML = `<button class="dropbtn-ustensils click-ustensils">
     <h2 class="title click-ustensils"> Ustensils</h2>
     <input class="ustensils-input click-ustensils" type="search" name="" id="search-ustensil"
-        placeholder="Rechercher un appareil">
+        placeholder="Rechercher un ustensil">
     <img class="icon-bas-ust click-ustensils" src="assets/dropdown.png" aria-label="icon pour ouvrir le menu déroulant"
         alt="icon vers le bas">
 </button>
