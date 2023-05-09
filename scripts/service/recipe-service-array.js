@@ -9,9 +9,6 @@ export let filterRecipesByInputSearch = (value) => {
     }
     return recipes
 }
-
-
-
 //chercher les recipes selon les ingredients,appareils et ustensils selectionnée et les mots saisi par l'usitilsateur dans l'inputGlobal
 export let searchRecipes = () => {
     const selectedIngredients = getSelectedIngredients()
@@ -20,8 +17,6 @@ export let searchRecipes = () => {
     let inputSearch = document.getElementById("contenu-search").value
     return filterRecipesByTagsAndInputSearch(inputSearch, selectedIngredients, selectedAppareils, selectedUstensils)
 }
-
-
 //chercher les recipes selon les ingredients,appareils et ustensils selectionnées et les mots saisi par l'utilisateur
 export let filterRecipesByTagsAndInputSearch = (inputSearchValue, selectedIngredients, selectedAppareils, selectedUstensils) => {
     return filterRecipesByTagValue(filterRecipesByInputSearch(inputSearchValue)

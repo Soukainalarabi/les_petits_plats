@@ -108,7 +108,7 @@ export function createDropDownDom() {
 <div class="dropdown-contentB">
 </div>`
     ustensilsDom.innerHTML = `<button class="dropbtn-ustensils click-ustensils">
-    <h2 class="title click-ustensils"> Ustensils</h2>
+    <h2 class="title click-ustensils"> Ustensiles</h2>
     <input class="ustensils-input click-ustensils" type="search" name="" id="search-ustensil"
         placeholder="Rechercher un ustensil">
     <img class="icon-bas-ust click-ustensils" src="assets/dropdown.png" aria-label="icon pour ouvrir le menu déroulant"

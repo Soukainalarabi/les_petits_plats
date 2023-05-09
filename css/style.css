@@ -255,13 +255,15 @@ ul {
 
 .description {
     width: 171px;
+    height: 69px;
     font-size: 12px;
     font-family: Roboto;
-    text-overflow: ellipsis;
+    /* text-overflow: ellipsis; */
     overflow: hidden;
-    height: 109px;
-
-
+    white-space: pre-wrap; 
+    display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 
 .card-img {
@@ -307,6 +309,9 @@ ul {
     .card-img {
         width: 360px;
     } 
+    .recipe-name{
+        padding-left: 1%;
+    }
 }
 @media(max-width:1159px){
      .cards {
@@ -317,6 +322,9 @@ ul {
     .card-img {
         width: 340px;
     }  
+    .ingredients {
+        padding-left: 1.5%;
+    }
 }
 
 @media(max-width:1072px){
@@ -353,7 +361,9 @@ ul {
 
         width: 360px;
     }
-
+    .ingredients {
+        padding-left: 0;
+    }
     .rectangle-search {
         width: 95%;
         /* margin-left: 2%; */
@@ -386,6 +396,9 @@ ul {
     .card,.card-img {
         width: 380px;
     }
+    .details-recipes {
+        width: 96%;
+    }
 }
 @media(max-width:634px){
     .dropdown-contentA,.dropdown-contentB,.dropdown-contentC,.dropbtn-responsive {
@@ -410,6 +423,13 @@ ul {
     .dropdown {
         margin-left: 1%;
     }
+    .dropbtn-ustensils{
+        margin-left: 0!important;
+    }
+    .dropdown-contentC{
+    margin-top: -2%;
+    margin-left: 0!important;
+}
    .hideDropDown-button{
     margin-left: 0;
     margin-top: 3%;
@@ -426,12 +446,12 @@ ul {
 }
 @media (max-width:398px) {
     .ingredients {
-        padding-left: 14px;
-        width: 45%;
+        /* padding-left: 14px; */
+        width: 49%;
     }
 
     .description {
-        width: 50%;
+        width: 43%;
     }
 
     .card,
@@ -452,4 +472,7 @@ ul {
         width: 130px;
         margin-left: 0px;
        }  
+       .ingredients{
+font-size: 11px;
+       }
 }
