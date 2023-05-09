@@ -1,7 +1,7 @@
-import showCardsRecipes from "./factories/cards/cardsUtils-array.js"
-import cardFactory from "./factories/cards/recipeCard-array.js"
-import dropDownFactory from "./factories/drop-down/dropDown-array.js"
-import { findAll, searchRecipes } from "./service/recipe-service-array.js"
+import showCardsRecipes from "./factories/cards/cardsUtils-naive.js"
+import cardFactory from "./factories/cards/recipeCard-naive.js"
+import dropDownFactory from "./factories/drop-down/dropDown-naive.js"
+import { findAll, searchRecipes } from "./service/recipe-service-naive.js"
 
 let inputSearch = document.getElementById("contenu-search")
 let cards = document.querySelector(".cards")

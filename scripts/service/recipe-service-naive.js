@@ -1,5 +1,4 @@
 import recipes from "../data/recipes.js"
-
 //cette fonction vérifie si la liste des ingredients contient le mot saisi
 function someIngredient(ingredients, searchString) {
     for (const ingredient of ingredients) {
